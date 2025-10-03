@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"james-wangx.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.24.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="1 配置转换器用 DC 安装 Dispatcher Module 时，勾选 NX Direct Translator  安装完后编辑 %DISP_ROOT%\Module\Translators\nxtransdirect\nxtransdirect.bat  2 首选项设置NX_ETS_NXTRANSDIRECT_ENABLED &#x3D; true 在保存 prt 时使用异步的转换器  NX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TC NX 集成，创建保存 JT 文件">
+<meta property="og:url" content="https://james-wangx.github.io/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/index.html">
+<meta property="og:site_name" content="王舰的博客">
+<meta property="og:description" content="1 配置转换器用 DC 安装 Dispatcher Module 时，勾选 NX Direct Translator  安装完后编辑 %DISP_ROOT%\Module\Translators\nxtransdirect\nxtransdirect.bat  2 首选项设置NX_ETS_NXTRANSDIRECT_ENABLED &#x3D; true 在保存 prt 时使用异步的转换器  NX">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://james-wangx.github.io/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/%E5%8B%BE%E9%80%89%E8%BD%AC%E6%8D%A2%E5%99%A8.png">
+<meta property="og:image" content="https://james-wangx.github.io/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/%E8%AE%BE%E7%BD%AE%E5%8F%98%E9%87%8F.png">
+<meta property="og:image" content="https://james-wangx.github.io/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/NX_ETS_NXTRANSDIRECT_ENABLED.png">
+<meta property="og:image" content="https://james-wangx.github.io/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/NX_ETS_NXTRANSDIRECT_REQUEST.png">
+<meta property="og:image" content="https://james-wangx.github.io/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/%E4%BF%9D%E5%AD%98%E7%AD%BE%E5%85%A5.png">
+<meta property="og:image" content="https://james-wangx.github.io/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/JT.png">
+<meta property="article:published_time" content="2025-09-17T10:11:06.000Z">
+<meta property="article:modified_time" content="2025-10-03T07:37:03.240Z">
+<meta property="article:author" content="王舰">
+<meta property="article:tag" content="Teamcenter">
+<meta property="article:tag" content="Dispatcher">
+<meta property="article:tag" content="NX">
+<meta property="article:tag" content="集成">
+<meta property="article:tag" content="JT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://james-wangx.github.io/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/%E5%8B%BE%E9%80%89%E8%BD%AC%E6%8D%A2%E5%99%A8.png">
+
+
+<link rel="canonical" href="https://james-wangx.github.io/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://james-wangx.github.io/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/","path":"PLM/Teamcenter/TC-NX-集成，创建保存-JT-文件/","title":"TC NX 集成，创建保存 JT 文件"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>TC NX 集成，创建保存 JT 文件 | 王舰的博客</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">王舰的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">网络江湖中的安全屋</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%85%8D%E7%BD%AE%E8%BD%AC%E6%8D%A2%E5%99%A8"><span class="nav-text">1 配置转换器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%A6%96%E9%80%89%E9%A1%B9%E8%AE%BE%E7%BD%AE"><span class="nav-text">2 首选项设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%B5%8B%E8%AF%95"><span class="nav-text">3 测试</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">王舰</p>
+  <div class="site-description" itemprop="description">记录生活，分享技术</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/james-wangx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;james-wangx" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wangjian@xcplm.com" title="E-Mail → mailto:wangjian@xcplm.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/james_wangx" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;james_wangx" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/@james-wangx" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;@james-wangx" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://james-wangx.github.io/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王舰">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王舰的博客">
+      <meta itemprop="description" content="记录生活，分享技术">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="TC NX 集成，创建保存 JT 文件 | 王舰的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          TC NX 集成，创建保存 JT 文件
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-09-17 18:11:06" itemprop="dateCreated datePublished" datetime="2025-09-17T18:11:06+08:00">2025-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-10-03 15:37:03" itemprop="dateModified" datetime="2025-10-03T15:37:03+08:00">2025-10-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/PLM/" itemprop="url" rel="index"><span itemprop="name">PLM</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/PLM/Teamcenter/" itemprop="url" rel="index"><span itemprop="name">Teamcenter</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="1-配置转换器"><a href="#1-配置转换器" class="headerlink" title="1 配置转换器"></a>1 配置转换器</h2><p>用 DC 安装 Dispatcher Module 时，勾选 NX Direct Translator</p>
+<p><img data-src="/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/.././TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/%E5%8B%BE%E9%80%89%E8%BD%AC%E6%8D%A2%E5%99%A8.png" alt="勾选转换器"></p>
+<p>安装完后编辑 %DISP_ROOT%\Module\Translators\nxtransdirect\nxtransdirect.bat</p>
+<p><img data-src="/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/.././TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/%E8%AE%BE%E7%BD%AE%E5%8F%98%E9%87%8F.png" alt="设置变量"></p>
+<h2 id="2-首选项设置"><a href="#2-首选项设置" class="headerlink" title="2 首选项设置"></a>2 首选项设置</h2><p>NX_ETS_NXTRANSDIRECT_ENABLED &#x3D; true</p>
+<p>在保存 prt 时使用异步的转换器</p>
+<p><img data-src="/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/.././TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/NX_ETS_NXTRANSDIRECT_ENABLED.png" alt="NX_ETS_NXTRANSDIRECT_ENABLED"></p>
+<p>NX_ETS_NXTRANSDIRECT_REQUEST &#x3D; 1</p>
+<p>当保存或签入时会异步调用转换器保存为 JT 文件</p>
+<p><img data-src="/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/.././TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/NX_ETS_NXTRANSDIRECT_REQUEST.png" alt="NX_ETS_NXTRANSDIRECT_REQUEST"></p>
+<h2 id="3-测试"><a href="#3-测试" class="headerlink" title="3 测试"></a>3 测试</h2><p>开启四层服务和 Dispatcher，在 NX 中保存或者签入，会触发 Dispatcher 的转换器</p>
+<p><img data-src="/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/.././TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/%E4%BF%9D%E5%AD%98%E7%AD%BE%E5%85%A5.png" alt="保存签入"></p>
+<p>相关日志：</p>
+<p>Dispatcher Scheduler：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">09</span>:<span class="number">57</span>:<span class="number">09</span>.<span class="number">559</span> UTC - INFO  -  Following module connected to the scheduler:</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">09</span>:<span class="number">57</span>:<span class="number">09</span>.<span class="number">559</span> UTC - INFO  -  --------------------------------------------</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">09</span>:<span class="number">57</span>:<span class="number">09</span>.<span class="number">560</span> UTC - INFO  -  HostName   : TC2412</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">09</span>:<span class="number">57</span>:<span class="number">09</span>.<span class="number">560</span> UTC - INFO  -  HostAddress: <span class="number">192</span>.<span class="number">168</span>.<span class="number">80</span>.<span class="number">101</span></span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">09</span>:<span class="number">57</span>:<span class="number">09</span>.<span class="number">560</span> UTC - INFO  -  ModuleName : Module_3dd26efb_e04f22f_TC2412</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">09</span>:<span class="number">57</span>:<span class="number">09</span>.<span class="number">562</span> UTC - INFO  -  ModuleURL  : rmi://<span class="number">192</span>.<span class="number">168</span>.<span class="number">80</span>.<span class="number">101</span>:<span class="number">1999</span></span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">09</span>:<span class="number">57</span>:<span class="number">09</span>.<span class="number">562</span> UTC - INFO  -</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">377</span> UTC - INFO  - - <span class="number">099</span>B0B76B - - - Task = Ud6de52ab468cbd82ee94x, Status = Task Saved</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">434</span> UTC - INFO  - - <span class="number">099</span>B0B76B - - - Task = Ud6de52ab468cbd82ee94x, Status = Task <span class="keyword">in</span> Module Queue</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">522</span> UTC - INFO  - - <span class="number">099</span>B0B76B - - - Task = Ud6de52ab468cbd82ee94x, Status = Started Translation<span class="variable">!!!</span></span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">37</span>.<span class="number">938</span> UTC - INFO  - - <span class="number">099</span>B0B76B - - - Task = Ud6de52ab468cbd82ee94x, Status = 成功地完成！</span><br></pre></td></tr></table></figure>
+
+<p>Dispatcher Module：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">498</span> UTC - INFO  - - <span class="number">07</span>BAB32C3 - - - Task = Ud6de52ab468cbd82ee94x, Status = Module started downloading files</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">508</span> UTC - INFO  - - <span class="number">07</span>BAB32C3 - - - Task = Ud6de52ab468cbd82ee94x, Status = Module completed downloading files</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">514</span> UTC - INFO  - - <span class="number">07</span>BAB32C3 - - - Task = Ud6de52ab468cbd82ee94x, Status = Started Translation<span class="variable">!!!</span></span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">533</span> UTC - INFO  - - <span class="number">07</span>BAB32C3 - - - Command string:</span><br><span class="line"><span class="function">C:\<span class="title">Siemens</span>\<span class="title">DISPAT</span>~1\<span class="title">Module</span>/<span class="title">Translators</span>/<span class="title">nxtransdirect</span>\<span class="title">nxtransdirect.bat</span> -<span class="title">inputFile</span>=<span class="title">C</span>:\<span class="title">Siemens</span>\<span class="title">Dispatcher</span>\<span class="title">Staging</span>\<span class="title">DC</span>\<span class="title">Ud6de52ab468cbd82ee94x</span>\<span class="title">nxtrans.xml</span> -<span class="title">u</span>=<span class="title">james</span> -<span class="title">p</span>=<span class="title">weQx4BSvsxfymEOQ6O9cghux</span>/<span class="title">qMlmYG</span>+<span class="title">DRIHTdVHP</span>/<span class="title">Yg7XAB8F3IzO37YjBZnaLBfHidTPxvvhjR24ZVejDhCw</span> -<span class="title">g</span>=<span class="title">dba</span> -<span class="title">encrypt</span>=<span class="title">true</span> -<span class="title">autologin</span>=<span class="title">true</span> -<span class="title">storeInSourceVolume</span>=<span class="title">false</span> -<span class="title">updateExistingVisData</span>=<span class="title">true</span> -<span class="title">changeOwnerToCad</span>=<span class="title">false</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">2025/09/18-10:01:15.554 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Translator</span> <span class="title">log</span> <span class="title">messages</span> <span class="title">are</span> <span class="title">in</span>: <span class="title">C</span>:\<span class="title">Siemens</span>\<span class="title">Dispatcher</span>\<span class="title">Staging</span>\<span class="title">DC</span>\<span class="title">Ud6de52ab468cbd82ee94x</span>\<span class="title">result</span>\<span class="title">SIEMENS_nxtransdirect.log</span></span></span><br><span class="line"><span class="function">2025/09/18-10:01:19.860 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> :</span></span><br><span class="line"><span class="function">2025/09/18-10:01:19.861 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> : ============================================================================</span></span><br><span class="line"><span class="function">2025/09/18-10:01:19.862 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> :         <span class="title">NX</span> <span class="title">JT</span> <span class="title">Export</span> (<span class="title">version</span> - <span class="title">NX</span> 2412.8300 - <span class="title">Build</span> <span class="title">date</span> - <span class="title">Apr</span> 15 2025)</span></span><br><span class="line"><span class="function">2025/09/18-10:01:19.863 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> :  <span class="title">Copyright</span> 2021 <span class="title">by</span> <span class="title">Siemens</span> <span class="title">Product</span> <span class="title">Lifecycle</span> <span class="title">Management</span> <span class="title">Software</span> <span class="title">Inc</span>.</span></span><br><span class="line"><span class="function">2025/09/18-10:01:19.863 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> :                    5800 <span class="title">Granite</span> <span class="title">Parkway</span>, <span class="title">Suite</span> 600.</span></span><br><span class="line"><span class="function">2025/09/18-10:01:19.863 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> :                          <span class="title">Plano</span>, <span class="title">TX</span> 75024.</span></span><br><span class="line"><span class="function">2025/09/18-10:01:19.863 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> :                               <span class="title">USA</span>.</span></span><br><span class="line"><span class="function">2025/09/18-10:01:19.864 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> :                       <span class="title">Phone</span>: 1 (972) 987-3000</span></span><br><span class="line"><span class="function">2025/09/18-10:01:19.864 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> :                        <span class="title">Fax</span>: 1 (972) 987-3299</span></span><br><span class="line"><span class="function">2025/09/18-10:01:19.874 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> :                    <span class="title">Web</span> <span class="title">site</span>: <span class="title">www.siemens.com</span>\<span class="title">plm</span></span></span><br><span class="line"><span class="function">2025/09/18-10:01:19.876 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> : ============================================================================</span></span><br><span class="line"><span class="function">2025/09/18-10:01:19.876 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> :</span></span><br><span class="line"><span class="function">2025/09/18-10:01:27.554 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> : <span class="title">FCC</span> <span class="title">interface</span> <span class="title">version</span> <span class="title">fms2412</span>.20241030.00.</span></span><br><span class="line"><span class="function">2025/09/18-10:01:27.554 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> : <span class="title">Loaded</span> <span class="title">implementation</span> <span class="title">library</span> &#x27;<span class="title">C</span>:\<span class="title">Siemens</span>\<span class="title">Teamcenter2412</span>\<span class="title">tccs</span>\<span class="title">lib</span>\<span class="title">FCCClientProxyDllv17064.dll</span>&#x27;.</span></span><br><span class="line"><span class="function">2025/09/18-10:01:27.555 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> : <span class="title">FCC</span> <span class="title">Interface</span> <span class="title">Implementation</span> <span class="title">fms2412</span>.20250609.00 <span class="title">initialized</span>.</span></span><br><span class="line"><span class="function">2025/09/18-10:01:27.557 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> : <span class="title">FCC</span> <span class="title">interface</span> <span class="title">version</span> <span class="title">fms</span>.13.3.20220304.00.</span></span><br><span class="line"><span class="function">2025/09/18-10:01:27.557 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> : <span class="title">Loaded</span> <span class="title">implementation</span> <span class="title">library</span> &#x27;<span class="title">C</span>:\<span class="title">Siemens</span>\<span class="title">Teamcenter2412</span>\<span class="title">tccs</span>\<span class="title">lib</span>\<span class="title">FCCClientProxyDllv15064.dll</span>&#x27;.</span></span><br><span class="line"><span class="function">2025/09/18-10:01:27.557 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> : <span class="title">FCC</span> <span class="title">Interface</span> <span class="title">Implementation</span> <span class="title">fms2412</span>.20250609.00 <span class="title">initialized</span>.</span></span><br><span class="line"><span class="function">2025/09/18-10:01:27.558 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> : <span class="title">Looking</span> <span class="title">for</span> <span class="title">config</span> <span class="title">file</span>: <span class="title">tessUG.config</span></span></span><br><span class="line"><span class="function">2025/09/18-10:01:27.558 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> : <span class="title">Looking</span> <span class="title">for</span> <span class="title">config</span> <span class="title">file</span>: <span class="title">tess.config</span></span></span><br><span class="line"><span class="function">2025/09/18-10:01:27.560 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> : <span class="title">Looking</span> <span class="title">for</span> <span class="title">config</span> <span class="title">file</span>: <span class="title">C</span>:\<span class="title">Siemens</span>\<span class="title">NX2412</span>\<span class="title">pvtrans</span>\<span class="title">tessUG.config</span> .... <span class="title">Found</span>!</span></span><br><span class="line"><span class="function">2025/09/18-10:01:27.566 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> : <span class="title">Translator</span> <span class="title">Log</span> <span class="title">File</span> <span class="title">created</span> <span class="title">at</span>: <span class="title">C</span>:\<span class="title">Users</span>\<span class="title">ADMINI</span>~1\<span class="title">AppData</span>\<span class="title">Local</span>\<span class="title">Temp</span>\<span class="title">nxtrans.log</span></span></span><br><span class="line"><span class="function">2025/09/18-10:01:34.183 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Standard</span> <span class="title">Input</span> : 在非交互模式下。导出目录 <span class="title">C</span>:\<span class="title">Siemens</span>\<span class="title">Dispatcher</span>\<span class="title">Staging</span>\<span class="title">DC</span>\<span class="title">Ud6de52ab468cbd82ee94x</span>\<span class="title">P</span>-00000004<span class="title">_1</span> 已被删除。</span></span><br><span class="line"><span class="function">2025/09/18-10:01:37.932 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Task</span> = <span class="title">Ud6de52ab468cbd82ee94x</span>, <span class="title">Status</span> = <span class="title">The</span> <span class="title">translator</span> <span class="title">completed</span> <span class="title">successfully</span></span></span><br><span class="line"><span class="function">2025/09/18-10:01:37.934 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Task</span> = <span class="title">Ud6de52ab468cbd82ee94x</span>, <span class="title">Status</span> = <span class="title">Module</span> <span class="title">started</span> <span class="title">uploading</span> <span class="title">result</span> <span class="title">files</span></span></span><br><span class="line"><span class="function">2025/09/18-10:01:37.936 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Task</span> = <span class="title">Ud6de52ab468cbd82ee94x</span>, <span class="title">Status</span> = <span class="title">Module</span> <span class="title">completed</span> <span class="title">uploading</span> <span class="title">result</span> <span class="title">files</span></span></span><br><span class="line"><span class="function">2025/09/18-10:01:37.936 <span class="title">UTC</span> - <span class="title">INFO</span>  - - 07<span class="title">BAB32C3</span> - - - <span class="title">Task</span> = <span class="title">Ud6de52ab468cbd82ee94x</span>, <span class="title">Status</span> = 成功地完成！</span></span><br></pre></td></tr></table></figure>
+
+<p>Dispatcher Client：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">14</span>.<span class="number">564</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - 开始抽取请求 Ud6de52ab468cbd82ee94x</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">14</span>.<span class="number">566</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - 开始抽取请求 Ud6de52ab468cbd82ee94x</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">078</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - 正在验证请求</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">126</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - ------------------------------------------------------------</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">127</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - 正在进入以下对象的定制 TaskPrep 类： SIEMENS nxtransdirect com.teamcenter.ets.translator.ugs.nxtransdirect.TaskPrep@<span class="number">59</span>d6642a</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">157</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - 正在退出以下对象的定制 TaskPrep 类： SIEMENS nxtransdirect com.teamcenter.ets.translator.ugs.nxtransdirect.TaskPrep@<span class="number">59</span>d6642a</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">168</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - ------------------------------------------------------------</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">213</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - 转换输入文件已经传入 C:/Siemens/DISPAT~<span class="number">1</span>/Staging\DC\Ud6de52ab468cbd82ee94x</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">214</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - 开始计划请求 Ud6de52ab468cbd82ee94x</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">288</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - Task = Ud6de52ab468cbd82ee94x, Status = Submitted the task successfully.</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">298</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - 抽取和提交已完成。</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">410</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - Task = Ud6de52ab468cbd82ee94x, Status = Task Saved</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">450</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - Task = Ud6de52ab468cbd82ee94x, Status = Task <span class="keyword">in</span> Module Queue</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">15</span>.<span class="number">528</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - Task = Ud6de52ab468cbd82ee94x, Status = Started Translation<span class="variable">!!!</span></span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">37</span>.<span class="number">947</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - Task = Ud6de52ab468cbd82ee94x, Status = 成功地完成！</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">37</span>.<span class="number">986</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - Output Files = C:/Siemens/DISPAT~<span class="number">1</span>/Staging\DC\Ud6de52ab468cbd82ee94x\result\SIEMENS_nxtransdirect.log</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">37</span>.<span class="number">998</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - Post Processor obtained class com.teamcenter.translationservice.process.BasicPostProcessor</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">38</span>.<span class="number">000</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - DBHelper Class = class com.teamcenter.ets.load.Loader</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">38</span>.<span class="number">021</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - 开始加载请求 Ud6de52ab468cbd82ee94x</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">38</span>.<span class="number">021</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - 开始加载请求 Ud6de52ab468cbd82ee94x</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">38</span>.<span class="number">174</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - <span class="number">2025</span>-<span class="number">09</span>-<span class="number">18</span> <span class="number">18</span>:<span class="number">01</span>:<span class="number">38</span> - Ud6de52ab468cbd82ee94x,COMPLETE,SIEMENS,nxtransdirect,<span class="number">3</span>,james,dba,dcproxy,<span class="number">2025</span>-<span class="number">09</span>-<span class="number">18</span> <span class="number">18</span>:<span class="number">01</span>:<span class="number">38</span>,<span class="number">1</span>,P-<span class="number">00000004</span>/A;<span class="number">1</span>,<span class="number">1</span>,P-<span class="number">00000004</span>/A;<span class="number">1</span>,<span class="number">6</span>,INITIAL,<span class="number">2025</span>-<span class="number">09</span>-<span class="number">18</span> <span class="number">18</span>:<span class="number">00</span>:<span class="number">14</span>,PREPARING,<span class="number">2025</span>-<span class="number">09</span>-<span class="number">18</span> <span class="number">18</span>:<span class="number">01</span>:<span class="number">14</span>,SCHEDULED,<span class="number">2025</span>-<span class="number">09</span>-<span class="number">18</span> <span class="number">18</span>:<span class="number">01</span>:<span class="number">15</span>,TRANSLATING,<span class="number">2025</span>-<span class="number">09</span>-<span class="number">18</span> <span class="number">18</span>:<span class="number">01</span>:<span class="number">15</span>,LOADING,<span class="number">2025</span>-<span class="number">09</span>-<span class="number">18</span> <span class="number">18</span>:<span class="number">01</span>:<span class="number">37</span>,COMPLETE,<span class="number">2025</span>-<span class="number">09</span>-<span class="number">18</span> <span class="number">18</span>:<span class="number">01</span>:<span class="number">38</span></span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">38</span>.<span class="number">175</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - 加载完成 Ud6de52ab468cbd82ee94x</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">38</span>.<span class="number">176</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - 加载完成</span><br><span class="line"><span class="number">2025</span>/<span class="number">09</span>/<span class="number">18</span>-<span class="number">10</span>:<span class="number">01</span>:<span class="number">38</span>.<span class="number">176</span> UTC - INFO  - - <span class="number">0811975</span>DB - - - Done processing TaskId Ud6de52ab468cbd82ee94x</span><br></pre></td></tr></table></figure>
+
+<p>保存的 JT 文件：</p>
+<p><img data-src="/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/.././TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%BF%9D%E5%AD%98-JT-%E6%96%87%E4%BB%B6/JT.png" alt="JT"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Teamcenter/" rel="tag"><i class="fa fa-tag"></i> Teamcenter</a>
+              <a href="/tags/Dispatcher/" rel="tag"><i class="fa fa-tag"></i> Dispatcher</a>
+              <a href="/tags/NX/" rel="tag"><i class="fa fa-tag"></i> NX</a>
+              <a href="/tags/%E9%9B%86%E6%88%90/" rel="tag"><i class="fa fa-tag"></i> 集成</a>
+              <a href="/tags/JT/" rel="tag"><i class="fa fa-tag"></i> JT</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/PLM/Teamcenter/Dispatcher-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" rel="prev" title="Dispatcher 安装配置">
+                  <i class="fa fa-angle-left"></i> Dispatcher 安装配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/PLM/Teamcenter/TC-NX-%E9%9B%86%E6%88%90%EF%BC%8C%E5%9B%BE%E7%BA%B8%E8%BD%AC-PDF-%E6%96%87%E4%BB%B6/" rel="next" title="TC NX 集成，图纸转 PDF 文件">
+                  TC NX 集成，图纸转 PDF 文件 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">王舰</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/james-wangx" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
