@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.0.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"james-wangx.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.24.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"james-wangx.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
     <meta name="description" content="1 为什么要升级DC 会检查 BMIDE 项目的依赖关系，比如之前部署的是依赖于 TC2412.0007 版本的模板，TC 升级后小版本就变为了 0008，再次部署 BMIDE 时由于找不到 0007 的依赖版本，可能会导致在应用程序选项卡中勾选不了我们的模板项目。  2 升级步骤    3 验证重新生成部署软件包后，可以看到小版本号发生变化：">
 <meta property="og:type" content="article">
@@ -65,7 +65,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
 <script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
 
@@ -303,13 +302,13 @@
     
     
     <div class="post-body" itemprop="articleBody"><h2 id="1-为什么要升级"><a href="#1-为什么要升级" class="headerlink" title="1 为什么要升级"></a>1 为什么要升级</h2><p>DC 会检查 BMIDE 项目的依赖关系，比如之前部署的是依赖于 TC2412.0007 版本的模板，TC 升级后小版本就变为了 0008，再次部署 BMIDE 时由于找不到 0007 的依赖版本，可能会导致在应用程序选项卡中勾选不了我们的模板项目。</p>
-<p><img data-src="/PLM/BMIDE/%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/.././%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/%E7%89%88%E6%9C%AC%E4%B8%8D%E4%B8%80%E8%87%B4.png" alt="版本不一致"></p>
-<h2 id="2-升级步骤"><a href="#2-升级步骤" class="headerlink" title="2 升级步骤"></a>2 升级步骤</h2><p><img data-src="/PLM/BMIDE/%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/.././%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/%E9%87%8D%E6%96%B0%E8%BF%90%E8%A1%8C%E6%A8%A1%E6%9D%BF%E9%A1%B9%E7%9B%AE%E5%8D%87%E7%BA%A7%E5%90%91%E5%AF%BC.png" alt="重新运行模板项目升级向导"></p>
-<p><img data-src="/PLM/BMIDE/%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/.././%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/%E6%A8%A1%E6%9D%BF%E9%A1%B9%E7%9B%AE%E5%8D%87%E7%BA%A7.png" alt="模板项目升级"></p>
-<p><img data-src="/PLM/BMIDE/%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/.././%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/%E5%8D%87%E7%BA%A7%E5%B9%B6%E5%8A%A0%E8%BD%BD%E9%A1%B9%E7%9B%AE.png" alt="升级并加载项目"></p>
-<p><img data-src="/PLM/BMIDE/%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/.././%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/%E5%8D%87%E7%BA%A7%E6%88%90%E5%8A%9F.png" alt="升级成功"></p>
+<p><img src="/PLM/BMIDE/%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/.././%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/%E7%89%88%E6%9C%AC%E4%B8%8D%E4%B8%80%E8%87%B4.png" alt="版本不一致"></p>
+<h2 id="2-升级步骤"><a href="#2-升级步骤" class="headerlink" title="2 升级步骤"></a>2 升级步骤</h2><p><img src="/PLM/BMIDE/%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/.././%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/%E9%87%8D%E6%96%B0%E8%BF%90%E8%A1%8C%E6%A8%A1%E6%9D%BF%E9%A1%B9%E7%9B%AE%E5%8D%87%E7%BA%A7%E5%90%91%E5%AF%BC.png" alt="重新运行模板项目升级向导"></p>
+<p><img src="/PLM/BMIDE/%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/.././%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/%E6%A8%A1%E6%9D%BF%E9%A1%B9%E7%9B%AE%E5%8D%87%E7%BA%A7.png" alt="模板项目升级"></p>
+<p><img src="/PLM/BMIDE/%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/.././%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/%E5%8D%87%E7%BA%A7%E5%B9%B6%E5%8A%A0%E8%BD%BD%E9%A1%B9%E7%9B%AE.png" alt="升级并加载项目"></p>
+<p><img src="/PLM/BMIDE/%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/.././%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/%E5%8D%87%E7%BA%A7%E6%88%90%E5%8A%9F.png" alt="升级成功"></p>
 <h2 id="3-验证"><a href="#3-验证" class="headerlink" title="3 验证"></a>3 验证</h2><p>重新生成部署软件包后，可以看到小版本号发生变化：</p>
-<p><img data-src="/PLM/BMIDE/%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/.././%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/%E9%AA%8C%E8%AF%81.png" alt="验证"></p>
+<p><img src="/PLM/BMIDE/%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/.././%E5%8D%87%E7%BA%A7-BMIDE-%E9%A1%B9%E7%9B%AE/%E9%AA%8C%E8%AF%81.png" alt="验证"></p>
 
     </div>
 
