@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://james-wangx.github.io/googlec9d35c15cb19a4a0.html</loc>
-    
-    <lastmod>2026-05-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://james-wangx.github.io/PLM/Xpedition/%E5%AE%89%E8%A3%85-Xpedition/</loc>
     
     <lastmod>2025-10-12</lastmod>
@@ -149,7 +140,7 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/tags/Deployment-Center/</loc>
+    <loc>https://james-wangx.github.io/tags/BMIDE/</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -163,7 +154,14 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/tags/BMIDE/</loc>
+    <loc>https://james-wangx.github.io/tags/Deployment-Center/</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/Xpedition/</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -204,13 +202,6 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://james-wangx.github.io/tags/Xpedition/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
@@ -228,13 +219,6 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/categories/PLM/Deployment-Center/</loc>
-    <lastmod>2026-05-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://james-wangx.github.io/categories/PLM/BMIDE/</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -242,7 +226,7 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/categories/PLM/Teamcenter/</loc>
+    <loc>https://james-wangx.github.io/categories/PLM/Deployment-Center/</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -250,6 +234,13 @@
   
   <url>
     <loc>https://james-wangx.github.io/categories/PLM/Xpedition/</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/categories/PLM/Teamcenter/</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
