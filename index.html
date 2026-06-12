@@ -178,7 +178,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,7 +189,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -229,7 +229,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://james-wangx.github.io/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="https://james-wangx.github.io/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -247,7 +247,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/" class="post-title-link" itemprop="url">Windows Server 测试系统常用设置</a>
+          <a href="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/" class="post-title-link" itemprop="url">安装 MS SQL Server 2022</a>
         </h2>
 
         <div class="post-meta-container">
@@ -259,7 +259,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2026-05-18 15:00:05 / 修改时间：17:35:55" itemprop="dateCreated datePublished" datetime="2026-05-18T15:00:05+08:00">2026-05-18</time>
+      <time title="创建时间：2026-06-12 07:47:56 / 修改时间：10:20:33" itemprop="dateCreated datePublished" datetime="2026-06-12T07:47:56+08:00">2026-06-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -281,32 +281,73 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="禁用-IPv6"><a href="#禁用-IPv6" class="headerlink" title="禁用 IPv6"></a>禁用 IPv6</h2><p>Win + R 打开注册表 regedit</p>
-<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/regedit.png" alt="regedit"></p>
-<p>访问：计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters</p>
-<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E6%96%B0%E5%BB%BA.png" alt="新建"></p>
-<p>名称为：DisabledComponents</p>
-<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/DisabledComponents.png" alt="DisabledComponents"></p>
-<p>双击修改，设置值为：ffffffff</p>
-<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E8%AE%BE%E7%BD%AE%E5%80%BCffffffff.png" alt="设置值ffffffff"></p>
-<p>重启后生效</p>
-<h2 id="限制-DEP"><a href="#限制-DEP" class="headerlink" title="限制 DEP"></a>限制 DEP</h2><p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E9%AB%98%E7%BA%A7%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE.png" alt="高级系统设置"></p>
-<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E6%80%A7%E8%83%BD%E8%AE%BE%E7%BD%AE.png" alt="性能设置"></p>
-<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E9%99%90%E5%88%B6DEP.png" alt="限制DEP"></p>
-<h2 id="禁用防火墙"><a href="#禁用防火墙" class="headerlink" title="禁用防火墙"></a>禁用防火墙</h2><p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E6%89%93%E5%BC%80%E9%98%B2%E7%81%AB%E5%A2%99.png" alt="打开防火墙"></p>
-<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E9%98%B2%E7%81%AB%E5%A2%99%E5%B1%9E%E6%80%A7.png" alt="防火墙属性"></p>
-<p>将域配置文件、专用配置文件、公用配置文件的防火墙状态都设置为关闭</p>
-<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E5%85%B3%E9%97%AD%E7%8A%B6%E6%80%81.png" alt="关闭状态"></p>
-<h2 id="禁用实时保护"><a href="#禁用实时保护" class="headerlink" title="禁用实时保护"></a>禁用实时保护</h2><p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E6%89%93%E5%BC%80%E9%98%B2%E7%97%85%E6%AF%92%E9%A1%B5%E9%9D%A2.png" alt="打开防病毒页面"></p>
-<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E7%A6%81%E7%94%A8%E5%AE%9E%E6%97%B6%E4%BF%9D%E6%8A%A4.png" alt="禁用实时保护"></p>
-<h2 id="禁用IE的增强安全设置"><a href="#禁用IE的增强安全设置" class="headerlink" title="禁用IE的增强安全设置"></a>禁用IE的增强安全设置</h2><p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E6%89%93%E5%BC%80IE%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE.png" alt="打开IE安全设置"></p>
-<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E7%A6%81%E7%94%A8IE%E5%AE%89%E5%85%A8%E8%AE%BE%E7%BD%AE.png" alt="禁用IE安全设置"></p>
-<h2 id="更改用户账户控制设置"><a href="#更改用户账户控制设置" class="headerlink" title="更改用户账户控制设置"></a>更改用户账户控制设置</h2><p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E6%9B%B4%E6%94%B9%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E6%8E%A7%E5%88%B6%E8%AE%BE%E7%BD%AE.png" alt="更改用户账户控制设置"></p>
-<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E4%BB%8E%E4%B8%8D%E9%80%9A%E7%9F%A5.png" alt="从不通知"></p>
-<h2 id="电源选项"><a href="#电源选项" class="headerlink" title="电源选项"></a>电源选项</h2><p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E7%94%B5%E6%BA%90%E9%80%89%E9%A1%B9.png" alt="电源选项"></p>
-<h2 id="关闭-cmd-的快速编辑模式"><a href="#关闭-cmd-的快速编辑模式" class="headerlink" title="关闭 cmd 的快速编辑模式"></a>关闭 cmd 的快速编辑模式</h2><p>打开 cmd，邮件窗口，打开属性</p>
-<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/cmd%E5%B1%9E%E6%80%A7.png" alt="cmd属性"></p>
-<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/.././Windows-Server-%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/%E5%85%B3%E9%97%AD%E5%BF%AB%E9%80%9F%E7%BC%96%E8%BE%91%E6%A8%A1%E5%BC%8F.png" alt="关闭快速编辑模式"></p>
+          <h2 id="1-安装包下载"><a href="#1-安装包下载" class="headerlink" title="1 安装包下载"></a>1 安装包下载</h2><p>浏览器打开：<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/download/details.aspx?id=104781">https://www.microsoft.com/zh-cn/download/details.aspx?id=104781</a></p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80.png" alt="image-20260612092036729"></p>
+<h2 id="2-自定义（有网络安装）"><a href="#2-自定义（有网络安装）" class="headerlink" title="2 自定义（有网络安装）"></a>2 自定义（有网络安装）</h2><p>指定一个媒体的位置</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E8%87%AA%E5%AE%9A%E4%B9%89.png" alt="image-20260612082818932"></p>
+<h2 id="3-下载介质（无网络安装）"><a href="#3-下载介质（无网络安装）" class="headerlink" title="3 下载介质（无网络安装）"></a>3 下载介质（无网络安装）</h2><p>打开下载好的 SQL2022-SSEI-Expr.exe，如果当前机器没有网络，则需要在有网络的机器上下载介质。如果有网络，则直接点击自定义。</p>
+<p><strong>如果选择自定义，可以跳过这一节。</strong></p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E4%B8%8B%E8%BD%BD%E4%BB%8B%E8%B4%A8.png" alt="image-20260612082021946"></p>
+<p>如果点击下载介质，选择 Express Advanced</p>
+<p>![image-20260612082114018](.&#x2F;安装-MS-SQL-Server-2022&#x2F;Express Advanced.png)</p>
+<p>下载完成后，将介质放到要安装的机器上并打开。提取到指定目录：</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E6%8F%90%E5%8F%96%E6%96%87%E4%BB%B6.png" alt="image-20260612082149305"></p>
+<h2 id="4-安装步骤"><a href="#4-安装步骤" class="headerlink" title="4 安装步骤"></a>4 安装步骤</h2><p>自定义或者使用介质的方式都会自动弹出该安装程序</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85.png" alt="image-20260612083155340"></p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E6%8E%A5%E5%8F%97%E8%AE%B8%E5%8F%AF%E6%9D%A1%E6%AC%BE.png" alt="image-20260612083504094"></p>
+<p>如果没有网络，可以不选择检查更新</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E6%A3%80%E6%9F%A5%E6%9B%B4%E6%96%B0.png" alt="image-20260612083558876"></p>
+<p>没有网络就跳过</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E6%B2%A1%E6%9C%89%E7%BD%91%E7%BB%9C%E8%B7%B3%E8%BF%87.png" alt="image-20260612084055745"></p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E5%8A%9F%E8%83%BD%E9%80%89%E6%8B%A9.png" alt="image-20260612084138258"></p>
+<p>选择默认实例</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E5%AE%9E%E4%BE%8B%E9%85%8D%E7%BD%AE.png" alt="image-20260612084217205"></p>
+<p>勾选授予“执行卷维护任务”特权</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE.png" alt="image-20260612092514812"></p>
+<p>选择混合模式并设置 sa 账户密码</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%95%E6%93%8E%E9%85%8D%E7%BD%AE.png" alt="image-20260612084339092"></p>
+<p>安装成功：</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F.png" alt="image-20260612084602747"></p>
+<h2 id="5-安装-SSMS"><a href="#5-安装-SSMS" class="headerlink" title="5 安装 SSMS"></a>5 安装 SSMS</h2><h3 id="5-1-下载-SSMS"><a href="#5-1-下载-SSMS" class="headerlink" title="5.1 下载 SSMS"></a>5.1 下载 SSMS</h3><p>浏览器打开：<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/ssms/install/install">https://learn.microsoft.com/zh-cn/ssms/install/install</a></p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/SMMS%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80.png" alt="image-20260612093207379"></p>
+<h3 id="5-2-有网络安装"><a href="#5-2-有网络安装" class="headerlink" title="5.2 有网络安装"></a>5.2 有网络安装</h3><p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/SSMS%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE.png" alt="SSMS安装位置"></p>
+<h3 id="5-3-无网络安装"><a href="#5-3-无网络安装" class="headerlink" title="5.3 无网络安装"></a>5.3 无网络安装</h3><p>如果没有网络，则需要先到有网络的机器上创建脱机安装缓存，cmd 运行（layout 替换为合适的路径）：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vs_SSMS.exe --layout C:\Users\james\Downloads\SSMS_Layout --add Microsoft.Component.HelpViewer --locale zh-CN</span><br></pre></td></tr></table></figure>
+
+<p>下载完成</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/Layout%E4%B8%8B%E8%BD%BD%E5%AE%8C%E6%88%90.png" alt="image-20260612094315650"></p>
+<p>将 SSMS_Layout 打包放到目标机器上</p>
+<p>下载证书：<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/ssms/install/install-certificates#validate-a-certificate-for-offline-installations">https://learn.microsoft.com/zh-cn/ssms/install/install-certificates#validate-a-certificate-for-offline-installations</a></p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E4%B8%8B%E8%BD%BD%E8%AF%81%E4%B9%A6.png" alt="image-20260612094434932"></p>
+<p>在目标机器上安装证书</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E5%AE%89%E8%A3%85%E8%AF%81%E4%B9%A6.png" alt="image-20260612094601551"></p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E9%80%89%E6%8B%A9%E6%9C%AC%E5%9C%B0%E8%AE%A1%E7%AE%97%E6%9C%BA.png" alt="image-20260612094617586"></p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E5%AF%BC%E5%85%A5%E8%AF%81%E4%B9%A6.png" alt="image-20260612094635580"></p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E5%AF%BC%E5%85%A5%E6%88%90%E5%8A%9F.png" alt="image-20260612094653123"></p>
+<p>目标机器上打开 cmd 到 SSMS_Layout 目录下运行：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vs_SSMS.exe --noWeb --add Microsoft.Component.HelpViewer</span><br></pre></td></tr></table></figure>
+
+<p>弹出 Visual Studio Installer，选择安装位置</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/SSMS%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE.png" alt="SSMS安装位置"></p>
+<p>安装完毕后重启</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/SSMS%E5%AE%89%E8%A3%85%E5%AE%8C%E6%AF%95.png" alt="SSMS安装完毕"></p>
+<h3 id="5-4-验证"><a href="#5-4-验证" class="headerlink" title="5.4 验证"></a>5.4 验证</h3><p>可以选择不登录</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E9%AA%8C%E8%AF%81%E8%BF%9E%E6%8E%A5.png" alt="验证连接"></p>
+<h4 id="5-4-1-Windows-身份验证"><a href="#5-4-1-Windows-身份验证" class="headerlink" title="5.4.1 Windows 身份验证"></a>5.4.1 Windows 身份验证</h4><p>服务器名称为当前主机名，勾选信任服务器证书</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/Windows%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81.png" alt="Windows身份验证"></p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/Windows%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E6%88%90%E5%8A%9F.png" alt="image-20260612100410423"></p>
+<h4 id="5-4-2-SQL-Server-身份验证"><a href="#5-4-2-SQL-Server-身份验证" class="headerlink" title="5.4.2 SQL Server 身份验证"></a>5.4.2 SQL Server 身份验证</h4><p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E6%96%B0%E5%BB%BA%E8%BF%9E%E6%8E%A5.png" alt="新建连接"></p>
+<p>选择 SQL Server 身份验证，输入 sa 的密码</p>
+<p>![SQL Server 身份验证](.&#x2F;安装-MS-SQL-Server-2022&#x2F;SQL Server 身份验证.png)</p>
+<p>![SQL Server 身份验证成功](.&#x2F;安装-MS-SQL-Server-2022&#x2F;SQL Server 身份验证成功.png)</p>
+<h2 id="6-开启-TCP-IP"><a href="#6-开启-TCP-IP" class="headerlink" title="6 开启 TCP&#x2F;IP"></a>6 开启 TCP&#x2F;IP</h2><p>打开 “SQL Server 2022 配置管理器“，开启 TCP&#x2F;IP，默认端口是 1433</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E5%99%A8.png" alt="配置管理器"></p>
+<p>![用 TCP IP](.&#x2F;安装-MS-SQL-Server-2022&#x2F;启用 TCP IP.png)</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1.png" alt="重启服务"></p>
+<p>重启服务，尝试从其它机器上连接：</p>
+<p>![重启 SQL Server 服务](.&#x2F;安装-MS-SQL-Server-2022&#x2F;重启 SQL Server 服务.png)</p>
+<p>例如使用 DateGrip 连接，输入 host、port、用户名和密码后测试连接成功</p>
+<p><img src="/%E6%9C%AA%E5%88%86%E7%B1%BB/%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/.././%E5%AE%89%E8%A3%85-MS-SQL-Server-2022/%E6%B5%8B%E8%AF%95%E8%BF%9E%E6%8E%A5%E6%88%90%E5%8A%9F.png" alt="测试连接成功"></p>
 
       
     </div>
@@ -326,7 +367,7 @@
 
 
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
