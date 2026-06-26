@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://james-wangx.github.io/PLM/Teamcenter/Install-Teamcenter-Using-Deployment-Center/</loc>
+    
+    <lastmod>2026-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://james-wangx.github.io/categories/index.html</loc>
     
     <lastmod>2026-06-26</lastmod>
@@ -14,15 +23,6 @@
     <loc>https://james-wangx.github.io/tags/index.html</loc>
     
     <lastmod>2026-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/PLM/Teamcenter/Install-Teamcenter-Using-Deployment-Center/</loc>
-    
-    <lastmod>2026-06-23</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -180,6 +180,13 @@
   </url>
   
   <url>
+    <loc>https://james-wangx.github.io/tags/%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://james-wangx.github.io/tags/Windows-Server/</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -187,7 +194,14 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/tags/%E5%AE%89%E8%A3%85/</loc>
+    <loc>https://james-wangx.github.io/tags/MS-SQL-Server/</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/Deployment-Center/</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -208,27 +222,6 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/tags/Xpedition/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/Deployment-Center/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/MS-SQL-Server/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://james-wangx.github.io/tags/Teamcenter/</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -237,6 +230,13 @@
   
   <url>
     <loc>https://james-wangx.github.io/tags/Dispatcher/</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/Installation/</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -263,6 +263,13 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://james-wangx.github.io/tags/Xpedition/</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -280,14 +287,7 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/categories/PLM/BMIDE/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/categories/PLM/Xpedition/</loc>
+    <loc>https://james-wangx.github.io/categories/PLM/Teamcenter/</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -301,7 +301,14 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/categories/PLM/Teamcenter/</loc>
+    <loc>https://james-wangx.github.io/categories/PLM/BMIDE/</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/categories/PLM/Xpedition/</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

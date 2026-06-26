@@ -25,28 +25,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"james-wangx.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="用 Deployment Center 安装 Teamcenter 的详细步骤，Web 服务器：Tomcat，SQL 服务器：MS SQL Server">
+    <meta name="description" content="Detailed steps for installing Teamcenter using Deployment Center, Web server: Tomcat, SQL server: MS SQL Server">
 <meta property="og:type" content="article">
-<meta property="og:title" content="用 Deployment Center 安装 Teamcenter">
+<meta property="og:title" content="Install Teamcenter Using Deployment Center">
 <meta property="og:url" content="https://james-wangx.github.io/PLM/Teamcenter/Install-Teamcenter-Using-Deployment-Center/index.html">
 <meta property="og:site_name" content="James Wang&#39;s Blog">
-<meta property="og:description" content="用 Deployment Center 安装 Teamcenter 的详细步骤，Web 服务器：Tomcat，SQL 服务器：MS SQL Server">
+<meta property="og:description" content="Detailed steps for installing Teamcenter using Deployment Center, Web server: Tomcat, SQL server: MS SQL Server">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-06-23T07:04:02.000Z">
-<meta property="article:modified_time" content="2026-06-23T07:07:26.819Z">
+<meta property="article:modified_time" content="2026-06-26T03:33:35.286Z">
 <meta property="article:author" content="James Wang">
+<meta property="article:tag" content="Installation">
 <meta property="article:tag" content="Teamcenter">
-<meta property="article:tag" content="安装">
 <meta name="twitter:card" content="summary">
 
 
 <link rel="canonical" href="https://james-wangx.github.io/PLM/Teamcenter/Install-Teamcenter-Using-Deployment-Center/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://james-wangx.github.io/PLM/Teamcenter/Install-Teamcenter-Using-Deployment-Center/","path":"PLM/Teamcenter/Install-Teamcenter-Using-Deployment-Center/","title":"用 Deployment Center 安装 Teamcenter"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://james-wangx.github.io/PLM/Teamcenter/Install-Teamcenter-Using-Deployment-Center/","path":"PLM/Teamcenter/Install-Teamcenter-Using-Deployment-Center/","title":"Install Teamcenter Using Deployment Center"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>用 Deployment Center 安装 Teamcenter | James Wang's Blog</title>
+<title>Install Teamcenter Using Deployment Center | James Wang's Blog</title>
   
 
 
@@ -193,7 +193,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -247,12 +247,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="用 Deployment Center 安装 Teamcenter | James Wang's Blog">
-      <meta itemprop="description" content="用 Deployment Center 安装 Teamcenter 的详细步骤，Web 服务器：Tomcat，SQL 服务器：MS SQL Server">
+      <meta itemprop="name" content="Install Teamcenter Using Deployment Center | James Wang's Blog">
+      <meta itemprop="description" content="Detailed steps for installing Teamcenter using Deployment Center, Web server: Tomcat, SQL server: MS SQL Server">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          用 Deployment Center 安装 Teamcenter
+          Install Teamcenter Using Deployment Center
         </h1>
 
         <div class="post-meta-container">
@@ -262,9 +262,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2026-06-23 15:04:02 / Modified: 15:07:26" itemprop="dateCreated datePublished" datetime="2026-06-23T15:04:02+08:00">2026-06-23</time>
+      <time title="Created: 2026-06-23 15:04:02" itemprop="dateCreated datePublished" datetime="2026-06-23T15:04:02+08:00">2026-06-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-06-26 11:33:35" itemprop="dateModified" datetime="2026-06-26T11:33:35+08:00">2026-06-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -298,7 +304,7 @@
     </span>
 </div>
 
-            <div class="post-description">用 Deployment Center 安装 Teamcenter 的详细步骤，Web 服务器：Tomcat，SQL 服务器：MS SQL Server</div>
+            <div class="post-description">Detailed steps for installing Teamcenter using Deployment Center, Web server: Tomcat, SQL server: MS SQL Server</div>
         </div>
       </header>
 
@@ -314,8 +320,8 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%AE%89%E8%A3%85/" rel="tag"><i class="fa fa-tag"></i> 安装</a>
               <a href="/tags/Teamcenter/" rel="tag"><i class="fa fa-tag"></i> Teamcenter</a>
+              <a href="/tags/Installation/" rel="tag"><i class="fa fa-tag"></i> Installation</a>
           </div>
 
         
