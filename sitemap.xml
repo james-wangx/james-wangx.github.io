@@ -2,7 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://james-wangx.github.io/PLM/Windchill/How-to-start-Windchill/</loc>
+    <loc>https://james-wangx.github.io/PLM/Teamcenter/Delete-Resource-Assignments-in-the-Schedule-Using-ITK/</loc>
+    
+    <lastmod>2026-08-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/PLM/Teamcenter/Create-Resource-Assignments-to-Tasks-in-the-Schedule-Using-ITK/</loc>
     
     <lastmod>2026-08-05</lastmod>
     
@@ -20,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/schedule/index.html</loc>
+    <loc>https://james-wangx.github.io/PLM/Windchill/How-to-start-Windchill/</loc>
     
     <lastmod>2026-08-05</lastmod>
     
@@ -29,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/PLM/Teamcenter/Create-Resource-Assignments-to-Tasks-in-the-Schedule-Using-ITK/</loc>
+    <loc>https://james-wangx.github.io/schedule/index.html</loc>
     
     <lastmod>2026-08-05</lastmod>
     
@@ -205,13 +214,6 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/tags/MS-SQL-Server/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://james-wangx.github.io/tags/Windows-Server/</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -219,21 +221,7 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/tags/Teamcenter/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/ITK/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/Schedule/</loc>
+    <loc>https://james-wangx.github.io/tags/MS-SQL-Server/</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -255,6 +243,62 @@
   
   <url>
     <loc>https://james-wangx.github.io/tags/Installation/</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/Deployment-Center/</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/Updrade/</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/Xpedition/</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/Stratup/</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/Windchill/</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/Teamcenter/</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/ITK/</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/Schedule/</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -283,41 +327,6 @@
   
   <url>
     <loc>https://james-wangx.github.io/tags/JT/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/Deployment-Center/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/Updrade/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/Stratup/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/Windchill/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/Xpedition/</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -361,14 +370,14 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/categories/PLM/Windchill/</loc>
+    <loc>https://james-wangx.github.io/categories/PLM/Xpedition/</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/categories/PLM/Xpedition/</loc>
+    <loc>https://james-wangx.github.io/categories/PLM/Windchill/</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
