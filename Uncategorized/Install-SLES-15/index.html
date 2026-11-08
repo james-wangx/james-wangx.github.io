@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="Lc6flMQrdAzzO5AVZhpNCTDGPavN3YkJ6g58f7mlbkw">
+  <meta name="msvalidate.01" content="D1C68EA11E61EC2D9C2EA68A01B5DAF3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.css" integrity="sha256-mdaMxrItEW6hMIVJJNPKuX0B7KCSJQVEv3mVY4N2we4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"james-wangx.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.29.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Install SUSE Linux Enterprise Server 15 SP7 in VMware Workstation and complete the initial network, storage, and user configuration.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Install SUSE Linux Enterprise Server 15 SP7">
+<meta property="og:url" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/index.html">
+<meta property="og:site_name" content="James Wang&#39;s Blog">
+<meta property="og:description" content="Install SUSE Linux Enterprise Server 15 SP7 in VMware Workstation and complete the initial network, storage, and user configuration.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/01-suse-download-page.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/02-sles-15-sp7-download-options.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/03-new-virtual-machine.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/04-typical-configuration.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/05-installation-iso.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/06-vm-name-and-location.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/07-disk-capacity.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/08-vm-summary-default-hardware.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/09-custom-memory.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/10-custom-processors.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/11-vm-summary-custom-hardware.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/12-boot-menu.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/13-language-and-product.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/14-license-agreement.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/15-network-overview.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/16-static-ip-and-hostname.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/17-hostname-and-dns.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/18-routing-table-empty.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/19-default-gateway.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/20-routing-table-configured.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/21-skip-registration.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/22-basesystem-module.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/23-server-applications-module.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/24-add-on-products.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/25-system-role-text-mode.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/26-suggested-partitioning.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/27-default-partition-layout.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/28-bios-boot-partition.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/29-swap-partition-size.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/30-swap-partition-role.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/31-swap-filesystem.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/32-partition-layout-after-swap.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/33-root-partition-size.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/34-root-partition-role.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/35-root-filesystem.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/36-final-partition-layout.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/37-partition-summary.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/38-time-zone.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/39-ntp-configuration.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/40-local-user.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/41-root-password.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/42-weak-password-warning.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/43-installation-settings.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/44-confirm-installation.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/45-installation-progress.png">
+<meta property="og:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/46-first-login-console.png">
+<meta property="article:published_time" content="2026-11-05T11:10:26.000Z">
+<meta property="article:modified_time" content="2026-11-08T10:48:26.883Z">
+<meta property="article:author" content="James Wang">
+<meta property="article:tag" content="Install">
+<meta property="article:tag" content="SLES">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://james-wangx.github.io/Uncategorized/Install-SLES-15/01-suse-download-page.png">
+
+
+<link rel="canonical" href="https://james-wangx.github.io/Uncategorized/Install-SLES-15/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://james-wangx.github.io/Uncategorized/Install-SLES-15/","path":"Uncategorized/Install-SLES-15/","title":"Install SUSE Linux Enterprise Server 15 SP7"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Install SUSE Linux Enterprise Server 15 SP7 | James Wang's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.umd.js" integrity="sha256-QnJV4HT5r8i89ovZGRD86iynZqHerEbT2xt69vDM36I=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.1/pangu.umd.js" integrity="sha256-kRsxecBnwG6mULFPe2E6UKnNm8XfDOuDwCOprjLZuX8=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="Search" role="button">
+      <i class="fa fa-search fa-fw fa-lg"></i>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">James Wang's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Learning · Building · Sharing</p>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="Toggle navigation bar" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  
+  <template id="search-popup-template"><div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div></template>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Download-the-ISO"><span class="nav-text">1. Download the ISO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Create-the-virtual-machine"><span class="nav-text">2. Create the virtual machine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Configure-installation-options"><span class="nav-text">3. Configure installation options</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Configure-the-network"><span class="nav-text">Configure the network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Select-modules-and-the-system-role"><span class="nav-text">Select modules and the system role</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Configure-disk-partitions"><span class="nav-text">4. Configure disk partitions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Complete-and-run-the-installation"><span class="nav-text">5. Complete and run the installation</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">James Wang</p>
+  <div class="site-description" itemprop="description">A personal blog about software development, technology, and life.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/james-wangx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;james-wangx" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wangjian@xcplm.com" title="E-Mail → mailto:wangjian@xcplm.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/james_wangx" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;james_wangx" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/@james-wangx" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;@james-wangx" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://james-wangx.github.io/Uncategorized/Install-SLES-15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="James Wang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="James Wang's Blog">
+      <meta itemprop="description" content="A personal blog about software development, technology, and life.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Install SUSE Linux Enterprise Server 15 SP7 | James Wang's Blog">
+      <meta itemprop="description" content="Install SUSE Linux Enterprise Server 15 SP7 in VMware Workstation and complete the initial network, storage, and user configuration.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Install SUSE Linux Enterprise Server 15 SP7
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-11-05 19:10:26" itemprop="dateCreated datePublished" datetime="2026-11-05T19:10:26+08:00">2026-11-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-11-08 18:48:26" itemprop="dateModified" datetime="2026-11-08T18:48:26+08:00">2026-11-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Uncategorized/" itemprop="url" rel="index"><span itemprop="name">Uncategorized</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-lines"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>4 mins.</span>
+    </span>
+</div>
+
+            <div class="post-description">Install SUSE Linux Enterprise Server 15 SP7 in VMware Workstation and complete the initial network, storage, and user configuration.</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>SUSE Linux Enterprise Server (SLES) 15 SP7 can be installed as a virtual machine with VMware Workstation. This guide uses the full installation ISO, configures a static network and a custom disk layout, and finishes with a text-mode login. The hostname, IP addresses, DNS servers, and passwords shown below are examples; replace them with values that match your environment.</p>
+<h2 id="1-Download-the-ISO"><a href="#1-Download-the-ISO" class="headerlink" title="1. Download the ISO"></a>1. Download the ISO</h2><p>Open the <a target="_blank" rel="noopener" href="https://www.suse.com/download/sles/">SUSE Linux Enterprise Server download page</a>, select <strong>SLES 15 SP7</strong> and the <strong>x86_64</strong> architecture.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/01-suse-download-page.png" alt="SUSE Linux Enterprise Server download page"></p>
+<p>Choose the installation media that fits the deployment. The <strong>Full DVD</strong> ISO supports an offline installation, while the <strong>Online Media</strong> requires access to SUSE repositories during installation. This guide uses the Full DVD image.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/02-sles-15-sp7-download-options.png" alt="SLES 15 SP7 ISO download options"></p>
+<h2 id="2-Create-the-virtual-machine"><a href="#2-Create-the-virtual-machine" class="headerlink" title="2. Create the virtual machine"></a>2. Create the virtual machine</h2><p>In VMware Workstation, select <strong>File &gt; New Virtual Machine</strong>.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/03-new-virtual-machine.png" alt="Create a new VMware virtual machine"></p>
+<p>Select <strong>Typical (recommended)</strong> and continue.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/04-typical-configuration.png" alt="Select the typical virtual machine configuration"></p>
+<p>Choose <strong>Installer disc image file (iso)</strong> and browse to the SLES 15 SP7 ISO.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/05-installation-iso.png" alt="Select the SLES installation ISO"></p>
+<p>Enter a virtual machine name and location. The example uses <code>Aurobay-2512</code>.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/06-vm-name-and-location.png" alt="Set the virtual machine name and location"></p>
+<p>Set the virtual disk capacity to 200 GB. Keeping the disk split into multiple files is suitable for a typical VMware Workstation deployment.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/07-disk-capacity.png" alt="Set the virtual disk capacity"></p>
+<p>The default summary allocates 2 GB of memory and two processor cores. These values are sufficient only for a basic test, so select <strong>Customize Hardware</strong> before powering on the VM.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/08-vm-summary-default-hardware.png" alt="Review the default virtual machine hardware"></p>
+<p>Increase the memory to 16 GB for this example.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/09-custom-memory.png" alt="Set the virtual machine memory to 16 GB"></p>
+<p>Configure one processor with eight cores, then review the updated hardware summary.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/10-custom-processors.png" alt="Configure eight processor cores"></p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/11-vm-summary-custom-hardware.png" alt="Review the customized virtual machine hardware"></p>
+<p>Power on the VM and select <strong>Installation</strong> from the SLES boot menu.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/12-boot-menu.png" alt="Select installation from the SLES boot menu"></p>
+<h2 id="3-Configure-installation-options"><a href="#3-Configure-installation-options" class="headerlink" title="3. Configure installation options"></a>3. Configure installation options</h2><p>Select the installation language, keyboard layout, and <strong>SUSE Linux Enterprise Server 15 SP7</strong> product, then select <strong>Next</strong>.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/13-language-and-product.png" alt="Select the language, keyboard, and product"></p>
+<p>Read and accept the SUSE license agreement.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/14-license-agreement.png" alt="Accept the SUSE license agreement"></p>
+<h3 id="Configure-the-network"><a href="#Configure-the-network" class="headerlink" title="Configure the network"></a>Configure the network</h3><p>The network page initially shows <code>eth0</code> without an assigned address. Select the adapter and choose <strong>Edit</strong>.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/15-network-overview.png" alt="Open the network adapter configuration"></p>
+<p>Select a static address and enter the example address <code>192.168.80.110/24</code> with hostname <code>Aurobay-2512</code>.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/16-static-ip-and-hostname.png" alt="Configure the static IP address and hostname"></p>
+<p>On the <strong>Hostname&#x2F;DNS</strong> tab, disable DHCP-based hostname assignment if required, then enter the DNS servers for the environment. The example uses <code>192.168.80.2</code>, <code>114.114.114.114</code>, and <code>8.8.8.8</code>.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/17-hostname-and-dns.png" alt="Configure hostname and DNS settings"></p>
+<p>Open the <strong>Routing</strong> tab and add a default route.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/18-routing-table-empty.png" alt="Open the routing table editor"></p>
+<p>Set the example gateway to <code>192.168.80.2</code> and select <code>eth0</code> as the device.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/19-default-gateway.png" alt="Add the default gateway"></p>
+<p>Confirm that the routing table contains the expected default route before continuing.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/20-routing-table-configured.png" alt="Review the configured routing table"></p>
+<h3 id="Select-modules-and-the-system-role"><a href="#Select-modules-and-the-system-role" class="headerlink" title="Select modules and the system role"></a>Select modules and the system role</h3><p>For an offline lab system, select <strong>Skip Registration</strong>. For a production system with repository access, register the system so it can receive security updates.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/21-skip-registration.png" alt="Skip system registration for the offline example"></p>
+<p>Keep the <strong>Basesystem Module</strong>. Add any modules required by the workload; this example also selects the <strong>Server Applications Module</strong>.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/22-basesystem-module.png" alt="Select the Basesystem Module"></p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/23-server-applications-module.png" alt="Select the Server Applications Module"></p>
+<p>Use <strong>Add-On Products</strong> only when an additional ISO or local repository is required.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/24-add-on-products.png" alt="Add optional installation products"></p>
+<p>Select <strong>Text Mode</strong> for a server installation. Choose <strong>X Window System</strong> instead if a graphical desktop is required.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/25-system-role-text-mode.png" alt="Select the text-mode system role"></p>
+<h2 id="4-Configure-disk-partitions"><a href="#4-Configure-disk-partitions" class="headerlink" title="4. Configure disk partitions"></a>4. Configure disk partitions</h2><p>The installation proposes a guided partition layout. Select <strong>Expert Partitioner</strong> to create the custom layout used in this guide.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/26-suggested-partitioning.png" alt="Open the expert partitioner"></p>
+<p>Before deleting or changing partitions, verify that the correct virtual disk is selected. This example starts with an automatically proposed layout.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/27-default-partition-layout.png" alt="Review the proposed partition layout"></p>
+<p>Delete the proposed partitions while keeping the small <strong>BIOS Boot Partition</strong>. This partition is required by the example&#39;s BIOS&#x2F;GPT boot layout. If the VM uses UEFI, keep the EFI System Partition instead.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/28-bios-boot-partition.png" alt="Keep only the BIOS Boot partition"></p>
+<p>Create an 8 GB swap partition.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/29-swap-partition-size.png" alt="Set the swap partition size"></p>
+<p>Set the partition role to <strong>Swap</strong>.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/30-swap-partition-role.png" alt="Set the swap partition role"></p>
+<p>Use the <strong>Swap</strong> filesystem and the <strong>Linux Swap</strong> partition ID.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/31-swap-filesystem.png" alt="Configure the swap filesystem"></p>
+<p>The partition list should now contain the BIOS Boot and swap partitions.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/32-partition-layout-after-swap.png" alt="Review the partition layout after adding swap"></p>
+<p>Create the root partition with the remaining <code>191.99 GB</code>.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/33-root-partition-size.png" alt="Set the root partition size"></p>
+<p>In this example, select <strong>Data and ISV Applications</strong> as the partition role.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/34-root-partition-role.png" alt="Select the root partition role"></p>
+<p>Format the partition with <strong>XFS</strong>, select the <strong>Linux</strong> partition ID, and mount it at <code>/</code>.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/35-root-filesystem.png" alt="Configure the root XFS filesystem"></p>
+<p>Confirm that the final disk layout contains the BIOS Boot, swap, and root partitions.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/36-final-partition-layout.png" alt="Review the final partition layout"></p>
+<p>Review the manual partitioning summary and continue.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/37-partition-summary.png" alt="Review the manual partitioning summary"></p>
+<h2 id="5-Complete-and-run-the-installation"><a href="#5-Complete-and-run-the-installation" class="headerlink" title="5. Complete and run the installation"></a>5. Complete and run the installation</h2><p>Select the required region and time zone. The example uses <strong>Asia &gt; Shanghai</strong>.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/38-time-zone.png" alt="Select the system time zone"></p>
+<p>Enable NTP synchronization with a reachable NTP server. The example uses the SUSE pool.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/39-ntp-configuration.png" alt="Configure NTP synchronization"></p>
+<p>Local user creation is skipped in this example. For a production server, create a non-root administrative account and use it for normal access.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/40-local-user.png" alt="Configure the local user"></p>
+<p>Set the root password. Use a strong password that meets the required complexity policy.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/41-root-password.png" alt="Set the root password"></p>
+<p>The installer warns when the password is weak. Choose a stronger password instead of confirming a weak one, even though the example dialog allows it.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/42-weak-password-warning.png" alt="Weak root password warning"></p>
+<p>Review the installation settings. Confirm the firewall and SSH options match the intended access model, then select <strong>Install</strong>.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/43-installation-settings.png" alt="Review the installation settings"></p>
+<p>Confirm the installation to begin modifying the virtual disk.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/44-confirm-installation.png" alt="Confirm the installation"></p>
+<p>Wait while the packages are installed. Do not power off the virtual machine during this phase.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/45-installation-progress.png" alt="SLES package installation progress"></p>
+<p>After installation and reboot, the system reaches a text-mode login prompt. The screenshot confirms the example hostname <code>Aurobay-2512</code> and address <code>192.168.80.110</code>.</p>
+<p><img src="/Uncategorized/Install-SLES-15/.././Install-SLES-15/46-first-login-console.png" alt="SLES first login console"></p>
+<p>After the first login, remove the installation ISO, verify the hostname and network configuration, and register the system if repository access is available. Then install updates and VMware guest integration packages such as <code>open-vm-tools</code> when the configured repositories provide them.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Install/" rel="tag"><i class="fa fa-tag"></i> Install</a>
+              <a href="/tags/SLES/" rel="tag"><i class="fa fa-tag"></i> SLES</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/PLM/Windchill/Create-Attribute-in-Windchill/" rel="prev" title="Create Attribute in Windchill">
+                  <i class="fa fa-angle-left"></i> Create Attribute in Windchill
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Uncategorized/Install-Windows-Server-2025/" rel="next" title="Install Windows Server 2025">
+                  Install Windows Server 2025 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">James Wang</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">29k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">1:46</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/james-wangx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"james-wangx/james-wangx.github.io","repo_id":"R_kgDOPo1xrA","category":"Comments","category_id":"DIC_kwDOPo1xrM4C_AXZ","mapping":"pathname","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"preferred_color_scheme","lang":"en","crossorigin":"anonymous","input_position":"bottom","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>
