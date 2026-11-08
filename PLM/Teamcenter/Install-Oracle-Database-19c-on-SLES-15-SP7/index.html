@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="Lc6flMQrdAzzO5AVZhpNCTDGPavN3YkJ6g58f7mlbkw">
+  <meta name="msvalidate.01" content="D1C68EA11E61EC2D9C2EA68A01B5DAF3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.css" integrity="sha256-mdaMxrItEW6hMIVJJNPKuX0B7KCSJQVEv3mVY4N2we4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"james-wangx.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.29.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Install Oracle Database 19c on SUSE Linux Enterprise Server 15 SP7, create a CDB and PDB, configure Oracle Net, and enable systemd autostart.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Install Oracle Database 19c on SLES 15 SP7">
+<meta property="og:url" content="https://james-wangx.github.io/PLM/Teamcenter/Install-Oracle-Database-19c-on-SLES-15-SP7/index.html">
+<meta property="og:site_name" content="James Wang&#39;s Blog">
+<meta property="og:description" content="Install Oracle Database 19c on SUSE Linux Enterprise Server 15 SP7, create a CDB and PDB, configure Oracle Net, and enable systemd autostart.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-11-08T13:04:45.000Z">
+<meta property="article:modified_time" content="2026-11-08T13:05:59.829Z">
+<meta property="article:author" content="James Wang">
+<meta property="article:tag" content="Database">
+<meta property="article:tag" content="Installation">
+<meta property="article:tag" content="Oracle">
+<meta property="article:tag" content="SLES">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://james-wangx.github.io/PLM/Teamcenter/Install-Oracle-Database-19c-on-SLES-15-SP7/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://james-wangx.github.io/PLM/Teamcenter/Install-Oracle-Database-19c-on-SLES-15-SP7/","path":"PLM/Teamcenter/Install-Oracle-Database-19c-on-SLES-15-SP7/","title":"Install Oracle Database 19c on SLES 15 SP7"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Install Oracle Database 19c on SLES 15 SP7 | James Wang's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.umd.js" integrity="sha256-QnJV4HT5r8i89ovZGRD86iynZqHerEbT2xt69vDM36I=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.1/pangu.umd.js" integrity="sha256-kRsxecBnwG6mULFPe2E6UKnNm8XfDOuDwCOprjLZuX8=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="Search" role="button">
+      <i class="fa fa-search fa-fw fa-lg"></i>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">James Wang's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Learning · Building · Sharing</p>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="Toggle navigation bar" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  
+  <template id="search-popup-template"><div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div></template>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Review-the-support-boundary"><span class="nav-text">1. Review the support boundary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Verify-the-operating-system-and-resources"><span class="nav-text">2. Verify the operating system and resources</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Mount-the-SLES-Full-ISO-and-add-local-repositories"><span class="nav-text">3. Mount the SLES Full ISO and add local repositories</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Install-the-Oracle-prerequisites"><span class="nav-text">4. Install the Oracle prerequisites</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Create-the-operating-system-account"><span class="nav-text">5. Create the operating-system account</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Configure-kernel-parameters-and-shell-limits"><span class="nav-text">6. Configure kernel parameters and shell limits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Create-the-directory-layout"><span class="nav-text">7. Create the directory layout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Stage-and-verify-the-installation-media"><span class="nav-text">8. Stage and verify the installation media</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Handle-the-glibc-pthread-linker-stub"><span class="nav-text">9. Handle the glibc pthread linker stub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-Create-the-silent-install-response-file"><span class="nav-text">10. Create the silent-install response file</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Install-the-Oracle-software"><span class="nav-text">11. Install the Oracle software</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-Configure-Oracle-Net"><span class="nav-text">12. Configure Oracle Net</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Create-the-CDB-and-PDB"><span class="nav-text">13. Create the CDB and PDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-Confirm-the-container-and-PDB-state"><span class="nav-text">14. Confirm the container and PDB state</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-Enable-automatic-startup-with-systemd"><span class="nav-text">15. Enable automatic startup with systemd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-Reboot-and-validate-the-complete-stack"><span class="nav-text">16. Reboot and validate the complete stack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-Troubleshooting"><span class="nav-text">17. Troubleshooting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-Production-hardening"><span class="nav-text">18. Production hardening</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">James Wang</p>
+  <div class="site-description" itemprop="description">A personal blog about software development, technology, and life.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/james-wangx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;james-wangx" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wangjian@xcplm.com" title="E-Mail → mailto:wangjian@xcplm.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/james_wangx" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;james_wangx" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/@james-wangx" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;@james-wangx" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://james-wangx.github.io/PLM/Teamcenter/Install-Oracle-Database-19c-on-SLES-15-SP7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="James Wang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="James Wang's Blog">
+      <meta itemprop="description" content="A personal blog about software development, technology, and life.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Install Oracle Database 19c on SLES 15 SP7 | James Wang's Blog">
+      <meta itemprop="description" content="Install Oracle Database 19c on SUSE Linux Enterprise Server 15 SP7, create a CDB and PDB, configure Oracle Net, and enable systemd autostart.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Install Oracle Database 19c on SLES 15 SP7
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-11-08 21:04:45 / Modified: 21:05:59" itemprop="dateCreated datePublished" datetime="2026-11-08T21:04:45+08:00">2026-11-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/PLM/" itemprop="url" rel="index"><span itemprop="name">PLM</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/PLM/Teamcenter/" itemprop="url" rel="index"><span itemprop="name">Teamcenter</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-lines"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>2.6k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>9 mins.</span>
+    </span>
+</div>
+
+            <div class="post-description">Install Oracle Database 19c on SUSE Linux Enterprise Server 15 SP7, create a CDB and PDB, configure Oracle Net, and enable systemd autostart.</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Oracle Database 19c is a common backend for Teamcenter. This guide explains how to perform a silent installation on SUSE Linux Enterprise Server (SLES) 15 SP7, create a container database (CDB) and a pluggable database (PDB), configure the listener, and enable automatic startup with systemd.</p>
+<p>The example environment has the following layout:</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Operating system</td>
+<td>SLES 15 SP7 x86-64</td>
+</tr>
+<tr>
+<td>Oracle release media</td>
+<td>Oracle Database 19.3 base release</td>
+</tr>
+<tr>
+<td><code>ORACLE_BASE</code></td>
+<td><code>/data/plm/oracle</code></td>
+</tr>
+<tr>
+<td><code>ORACLE_HOME</code></td>
+<td><code>/data/plm/oracle/product/19.0.0/dbhome_1</code></td>
+</tr>
+<tr>
+<td>Central Inventory</td>
+<td><code>/data/plm/oraInventory</code></td>
+</tr>
+<tr>
+<td>CDB name &#x2F; SID</td>
+<td><code>tcdb</code> &#x2F; <code>tcdb</code></td>
+</tr>
+<tr>
+<td>PDB name</td>
+<td><code>tcpdb</code></td>
+</tr>
+<tr>
+<td>Listener port</td>
+<td><code>1521</code></td>
+</tr>
+<tr>
+<td>Database character set</td>
+<td><code>AL32UTF8</code></td>
+</tr>
+<tr>
+<td>Database edition</td>
+<td>Enterprise Edition</td>
+</tr>
+</tbody></table>
+<h2 id="1-Review-the-support-boundary"><a href="#1-Review-the-support-boundary" class="headerlink" title="1. Review the support boundary"></a>1. Review the support boundary</h2><p>Oracle Database 19c base media contains release 19.3. SLES 15 SP7 is newer than that base release and is not certified with an unpatched 19.3 database. The installation usually works, but Oracle and SUSE may not provide support for that exact combination.</p>
+<p>For a production system, apply a certified 19c release update (RU), such as 19.27 or later, and verify the current Oracle certification matrix before deployment. Use this procedure for development or test systems when only the 19.3 base media is available.</p>
+<h2 id="2-Verify-the-operating-system-and-resources"><a href="#2-Verify-the-operating-system-and-resources" class="headerlink" title="2. Verify the operating system and resources"></a>2. Verify the operating system and resources</h2><p>Confirm the operating system, architecture, hostname, memory, swap, and disk space:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /etc/os-release</span><br><span class="line"><span class="built_in">uname</span> -m</span><br><span class="line">hostname</span><br><span class="line">free -h</span><br><span class="line">swapon --show</span><br><span class="line"><span class="built_in">df</span> -hT / /tmp /data</span><br></pre></td></tr></table></figure>
+
+<p>Use a hostname no longer than 31 characters. The database server should also have a stable IP address and a resolvable hostname.</p>
+<p>The example system uses 16 GB of memory, 8 GB of swap, and local XFS storage. Do not put Oracle data files on NFS or another shared file system.</p>
+<h2 id="3-Mount-the-SLES-Full-ISO-and-add-local-repositories"><a href="#3-Mount-the-SLES-Full-ISO-and-add-local-repositories" class="headerlink" title="3. Mount the SLES Full ISO and add local repositories"></a>3. Mount the SLES Full ISO and add local repositories</h2><p>Oracle requires libraries from several SLES modules. A Full ISO is the simplest source for an offline installation.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /mnt/sles15sp7</span><br><span class="line">mount -o ro /dev/sr0 /mnt/sles15sp7</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> repo_dir <span class="keyword">in</span> $(find /mnt/sles15sp7 -maxdepth 3 \</span><br><span class="line">  -<span class="built_in">type</span> d -name repodata -<span class="built_in">printf</span> <span class="string">&#x27;%h\n&#x27;</span> | <span class="built_in">sort</span>); <span class="keyword">do</span></span><br><span class="line">  zypper --non-interactive ar --refresh \</span><br><span class="line">    <span class="string">&quot;dir:<span class="variable">$&#123;repo_dir&#125;</span>&quot;</span> <span class="string">&quot;local-<span class="subst">$(basename <span class="string">&quot;<span class="variable">$&#123;repo_dir&#125;</span>&quot;</span>)</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">zypper --gpg-auto-import-keys refresh</span><br><span class="line">zypper repos --details</span><br></pre></td></tr></table></figure>
+
+<p>The ISO contains the Basesystem, Server Applications, Development Tools, Desktop Applications, and Legacy modules. The Legacy module is required because Oracle 19c checks for <code>libcap1</code>.</p>
+<h2 id="4-Install-the-Oracle-prerequisites"><a href="#4-Install-the-Oracle-prerequisites" class="headerlink" title="4. Install the Oracle prerequisites"></a>4. Install the Oracle prerequisites</h2><p>Install the runtime, linker, X11 client, and 32-bit compatibility packages:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">zypper --non-interactive install \</span><br><span class="line">  bc binutils make gcc gcc-c++ glibc glibc-devel libstdc++-devel \</span><br><span class="line">  insserv-compat libaio1 libaio-devel libelf1 libgcc_s1 libstdc++6 \</span><br><span class="line">  libcap1 libcap2 libcap-ng0 libcap-ng-utils libcap-progs \</span><br><span class="line">  libpcre1 libpcre16-0 libpng16-16 libjpeg8 libjpeg62 libtiff5 \</span><br><span class="line">  libpcap1 xz pixz mksh systemd-sysvcompat \</span><br><span class="line">  libX11-6 libXau6 libXext6 libXext-devel libXi6 libXi-devel \</span><br><span class="line">  libXrender1 libXrender-devel libXtst6 \</span><br><span class="line">  libaio1-32bit libcap1-32bit libcap2-32bit libcap-ng0-32bit \</span><br><span class="line">  libgcc_s1-32bit libpng16-16-32bit libstdc++6-32bit \</span><br><span class="line">  libXi6-32bit libXrender1-32bit libXtst6-32bit \</span><br><span class="line">  smartmontools sysstat</span><br></pre></td></tr></table></figure>
+
+<p>A C compiler is not strictly required to install the base software, but it is required when relinking for an RU. Installing it now avoids a later interruption.</p>
+<h2 id="5-Create-the-operating-system-account"><a href="#5-Create-the-operating-system-account" class="headerlink" title="5. Create the operating-system account"></a>5. Create the operating-system account</h2><p>Create the standard Oracle groups and the <code>oracle</code> account:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">getent group oinstall &gt;/dev/null || groupadd -g 54321 oinstall</span><br><span class="line">getent group dba &gt;/dev/null || groupadd -g 54322 dba</span><br><span class="line">getent passwd oracle &gt;/dev/null || \</span><br><span class="line">  useradd -u 54321 -g oinstall -G dba -m -s /bin/bash oracle</span><br><span class="line"></span><br><span class="line">usermod -aG dba oracle</span><br><span class="line">passwd oracle</span><br></pre></td></tr></table></figure>
+
+<p>The primary group must be <code>oinstall</code>, and the account must also be a member of <code>dba</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">id</span> oracle</span><br></pre></td></tr></table></figure>
+
+<p>Set a strong password when prompted. The simple lab credential used during this installation must not be reused on a production system.</p>
+<h2 id="6-Configure-kernel-parameters-and-shell-limits"><a href="#6-Configure-kernel-parameters-and-shell-limits" class="headerlink" title="6. Configure kernel parameters and shell limits"></a>6. Configure kernel parameters and shell limits</h2><p>Calculate shared-memory values from the installed physical memory. The examples below use one half of physical memory for <code>kernel.shmmax</code> and convert that value to 4 KB pages for <code>kernel.shmall</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">memory_bytes=$(awk <span class="string">&#x27;/^MemTotal:/ &#123; printf &quot;%.0f&quot;, $2 * 1024 &#125;&#x27;</span> /proc/meminfo)</span><br><span class="line">shmmax=$((memory_bytes / <span class="number">2</span>))</span><br><span class="line">shmall=$((shmmax / <span class="number">4096</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">cat</span> &gt; /etc/sysctl.d/99-oracle.conf &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">fs.aio-max-nr = 1048576</span></span><br><span class="line"><span class="string">fs.file-max = 6815744</span></span><br><span class="line"><span class="string">kernel.shmall = $&#123;shmall&#125;</span></span><br><span class="line"><span class="string">kernel.shmmax = $&#123;shmmax&#125;</span></span><br><span class="line"><span class="string">kernel.shmmni = 4096</span></span><br><span class="line"><span class="string">kernel.sem = 250 32000 100 128</span></span><br><span class="line"><span class="string">net.ipv4.ip_local_port_range = 9000 65500</span></span><br><span class="line"><span class="string">net.core.rmem_default = 262144</span></span><br><span class="line"><span class="string">net.core.rmem_max = 4194304</span></span><br><span class="line"><span class="string">net.core.wmem_default = 262144</span></span><br><span class="line"><span class="string">net.core.wmem_max = 1048576</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line">sysctl --system</span><br></pre></td></tr></table></figure>
+
+<p>Configure the process and file limits:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /etc/security/limits.d/99-oracle.conf &lt;&lt;<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">oracle soft <span class="built_in">nproc</span> 2047</span><br><span class="line">oracle hard <span class="built_in">nproc</span> 16384</span><br><span class="line">oracle soft nofile 1024</span><br><span class="line">oracle hard nofile 65536</span><br><span class="line">oracle soft stack 10240</span><br><span class="line">oracle hard stack 32768</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">grep pam_limits /etc/pam.d/common-session</span><br></pre></td></tr></table></figure>
+
+<p>Open a new <code>oracle</code> login session and verify the limits:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su - oracle -c <span class="string">&#x27;ulimit -Sn; ulimit -Hn; ulimit -Su; ulimit -Hu&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="7-Create-the-directory-layout"><a href="#7-Create-the-directory-layout" class="headerlink" title="7. Create the directory layout"></a>7. Create the directory layout</h2><p>Keep the Central Inventory outside <code>ORACLE_BASE</code> when possible. The database software and data directories remain under the requested install location:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">install -d -m 755 /data</span><br><span class="line">install -d -m 755 /data/plm</span><br><span class="line">install -d -o oracle -g oinstall -m 775 /data/plm/oraInventory</span><br><span class="line">install -d -o oracle -g oinstall -m 775 \</span><br><span class="line">  /data/plm/oracle/product/19.0.0/dbhome_1 \</span><br><span class="line">  /data/plm/oracle/oradata \</span><br><span class="line">  /data/plm/oracle/fast_recovery_area \</span><br><span class="line">  /data/plm/oracle/admin \</span><br><span class="line">  /data/plm/oracle/tmp</span><br><span class="line"></span><br><span class="line"><span class="built_in">chown</span> -R oracle:oinstall /data/plm/oracle</span><br><span class="line"><span class="built_in">chmod</span> 755 /data/plm</span><br></pre></td></tr></table></figure>
+
+<p>The most important paths are:</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/data/plm/oracle</code></td>
+<td><code>ORACLE_BASE</code></td>
+</tr>
+<tr>
+<td><code>/data/plm/oracle/product/19.0.0/dbhome_1</code></td>
+<td><code>ORACLE_HOME</code></td>
+</tr>
+<tr>
+<td><code>/data/plm/oraInventory</code></td>
+<td>Central Inventory</td>
+</tr>
+<tr>
+<td><code>/data/plm/oracle/oradata</code></td>
+<td>CDB and PDB data files</td>
+</tr>
+<tr>
+<td><code>/data/plm/oracle/fast_recovery_area</code></td>
+<td>Fast Recovery Area</td>
+</tr>
+</tbody></table>
+<p>None of the directories above needs to contain a database data file at this point.</p>
+<p>Add the Oracle environment to <code>/home/oracle/.bash_profile</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt;&gt; /home/oracle/.bash_profile &lt;&lt;<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> ORACLE_BASE=/data/plm/oracle</span><br><span class="line"><span class="built_in">export</span> ORACLE_HOME=<span class="variable">$ORACLE_BASE</span>/product/19.0.0/dbhome_1</span><br><span class="line"><span class="built_in">export</span> ORACLE_SID=tcdb</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$ORACLE_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$ORACLE_HOME</span>/lib</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>Do not set <code>TNS_ADMIN</code> unless your environment requires a separate centralized Oracle Net configuration directory.</p>
+<h2 id="8-Stage-and-verify-the-installation-media"><a href="#8-Stage-and-verify-the-installation-media" class="headerlink" title="8. Stage and verify the installation media"></a>8. Stage and verify the installation media</h2><p>Copy <code>LINUX.X64_193000_db_home.zip</code> to the server, then verify its size and SHA-256 checksum:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -lh /tmp/LINUX.X64_193000_db_home.zip</span><br><span class="line"><span class="built_in">sha256sum</span> /tmp/LINUX.X64_193000_db_home.zip</span><br></pre></td></tr></table></figure>
+
+<p>The media used for this installation has the following checksum:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ba8329c757133da313ed3b6d7f86c5ac42cd9970a28bf2e6233f3235233aa8d8</span><br></pre></td></tr></table></figure>
+
+<p>Starting with Oracle 19c, the installation media is extracted directly into an empty <code>ORACLE_HOME</code>, and <code>runInstaller</code> is executed from that directory:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">su - oracle</span><br><span class="line"><span class="built_in">umask</span> 022</span><br><span class="line"><span class="built_in">cd</span> <span class="string">&quot;<span class="variable">$ORACLE_HOME</span>&quot;</span></span><br><span class="line">unzip -q /tmp/LINUX.X64_193000_db_home.zip</span><br></pre></td></tr></table></figure>
+
+<p>Confirm that <code>ORACLE_HOME</code> contains <code>runInstaller</code> and the <code>install</code> directory.</p>
+<h2 id="9-Handle-the-glibc-pthread-linker-stub"><a href="#9-Handle-the-glibc-pthread-linker-stub" class="headerlink" title="9. Handle the glibc pthread linker stub"></a>9. Handle the glibc pthread linker stub</h2><p>With the newer glibc included in current SLES 15 service packs, the Oracle 19.3 linker may fail with:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ld: cannot find /usr/lib64/libpthread_nonshared.a: No such file or directory</span><br><span class="line">genclntsh: Failed to link libclntshcore.so.19.1</span><br></pre></td></tr></table></figure>
+
+<p>The 19.3 media uses an old linker script at <code>$ORACLE_HOME/lib/stubs/libpthread.so</code> that references a file no longer provided by the current glibc package. On affected systems, back up the Oracle stub and remove only the obsolete archive reference:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">stub=<span class="string">&quot;<span class="variable">$ORACLE_HOME</span>/lib/stubs/libpthread.so&quot;</span></span><br><span class="line"><span class="built_in">cp</span> -a <span class="string">&quot;<span class="variable">$stub</span>&quot;</span> <span class="string">&quot;<span class="variable">$&#123;stub&#125;</span>.oracle1930.bak&quot;</span></span><br><span class="line">sed -i \</span><br><span class="line">  <span class="string">&#x27;s#GROUP ( libpthread.so.0 /usr/lib64/libpthread_nonshared.a )#GROUP ( libpthread.so.0 )#&#x27;</span> \</span><br><span class="line">  <span class="string">&quot;<span class="variable">$stub</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cat</span> <span class="string">&quot;<span class="variable">$stub</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>The resulting file should contain:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OUTPUT_FORMAT(elf64-x86-64)</span><br><span class="line">GROUP ( libpthread.so.0 )</span><br></pre></td></tr></table></figure>
+
+<p>This is a compatibility workaround for the old 19.3 media. Apply the current certified RU instead where possible.</p>
+<h2 id="10-Create-the-silent-install-response-file"><a href="#10-Create-the-silent-install-response-file" class="headerlink" title="10. Create the silent-install response file"></a>10. Create the silent-install response file</h2><p>Copy the response file supplied with the installation media:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> <span class="string">&quot;<span class="variable">$ORACLE_HOME</span>/install/response/db_install.rsp&quot;</span> \</span><br><span class="line">  <span class="string">&quot;<span class="variable">$ORACLE_BASE</span>/db_install.rsp&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Set at least the following values:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">oracle.install.option=INSTALL_DB_SWONLY</span><br><span class="line">UNIX_GROUP_NAME=oinstall</span><br><span class="line">INVENTORY_LOCATION=/data/plm/oraInventory</span><br><span class="line">ORACLE_HOME=/data/plm/oracle/product/19.0.0/dbhome_1</span><br><span class="line">ORACLE_BASE=/data/plm/oracle</span><br><span class="line">oracle.install.db.InstallEdition=EE</span><br><span class="line">oracle.install.db.OSDBA_GROUP=dba</span><br><span class="line">oracle.install.db.OSOPER_GROUP=dba</span><br><span class="line">oracle.install.db.OSBACKUPDBA_GROUP=dba</span><br><span class="line">oracle.install.db.OSDGDBA_GROUP=dba</span><br><span class="line">oracle.install.db.OSKMDBA_GROUP=dba</span><br><span class="line">oracle.install.db.OSRACDBA_GROUP=dba</span><br><span class="line">SECURITY_UPDATES_VIA_MYORACLESUPPORT=false</span><br><span class="line">DECLINE_SECURITY_UPDATES=true</span><br></pre></td></tr></table></figure>
+
+<p>The last setting is mandatory for a silent offline installation; otherwise OUI can stop at the security-update question.</p>
+<h2 id="11-Install-the-Oracle-software"><a href="#11-Install-the-Oracle-software" class="headerlink" title="11. Install the Oracle software"></a>11. Install the Oracle software</h2><p>Run OUI as the <code>oracle</code> user:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="string">&quot;<span class="variable">$ORACLE_HOME</span>&quot;</span></span><br><span class="line">./runInstaller -silent -responseFile <span class="string">&quot;<span class="variable">$ORACLE_BASE</span>/db_install.rsp&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>On the unsupported 19.3 and SLES 15 SP7 combination, OUI can report obsolete package checks such as <code>libstdc++33</code>. Review the failed checks in the install log before using the following option:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./runInstaller -silent \</span><br><span class="line">  -responseFile <span class="string">&quot;<span class="variable">$ORACLE_BASE</span>/db_install.rsp&quot;</span> \</span><br><span class="line">  -ignorePrereqFailure</span><br></pre></td></tr></table></figure>
+
+<p>Do not ignore unknown missing libraries or permission failures without investigating them. The installation log is stored under <code>/data/plm/oraInventory/logs/</code>.</p>
+<p>When OUI requests root scripts, execute them in the order shown:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/data/plm/oraInventory/orainstRoot.sh</span><br><span class="line">/data/plm/oracle/product/19.0.0/dbhome_1/root.sh</span><br></pre></td></tr></table></figure>
+
+<p>After completion, verify that SQL*Plus is available:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su - oracle -c <span class="string">&#x27;sqlplus -v&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>The expected version is <code>19.3.0.0.0</code> for the base installation.</p>
+<h2 id="12-Configure-Oracle-Net"><a href="#12-Configure-Oracle-Net" class="headerlink" title="12. Configure Oracle Net"></a>12. Configure Oracle Net</h2><p>Create <code>listener.ora</code> in <code>$ORACLE_HOME/network/admin</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; <span class="string">&quot;<span class="variable">$ORACLE_HOME</span>/network/admin/listener.ora&quot;</span> &lt;&lt;<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">LISTENER =</span><br><span class="line">  (DESCRIPTION_LIST =</span><br><span class="line">    (DESCRIPTION =</span><br><span class="line">      (ADDRESS = (PROTOCOL = TCP)(HOST = Aurobay-2512)(PORT = 1521))</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>Replace <code>Aurobay-2512</code> with the actual hostname. A listener configuration with two TCP endpoints on the same port can fail with <code>TNS-12542: address already in use</code>.</p>
+<p>Configure the Teamcenter-compatible SQL*Net expiration setting:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; <span class="string">&quot;<span class="variable">$ORACLE_HOME</span>/network/admin/sqlnet.ora&quot;</span> &lt;&lt;<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">SQLNET.EXPIRE_TIME = 10</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>Start and verify the listener:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lsnrctl start LISTENER</span><br><span class="line">lsnrctl status LISTENER</span><br></pre></td></tr></table></figure>
+
+<p>At this stage, the listener can show <code>The listener supports no services</code>. That is normal before a database instance exists or registers with the listener.</p>
+<h2 id="13-Create-the-CDB-and-PDB"><a href="#13-Create-the-CDB-and-PDB" class="headerlink" title="13. Create the CDB and PDB"></a>13. Create the CDB and PDB</h2><p>The following command creates an empty <code>tcdb</code> CDB with one PDB named <code>tcpdb</code>. It does not use a Teamcenter-specific template; the Teamcenter schema and tablespaces are normally created later by Deployment Center.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">read</span> -r -s -p <span class="string">&quot;Oracle password: &quot;</span> DB_PASSWORD</span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"></span><br><span class="line">dbca -silent -createDatabase \</span><br><span class="line">  -templateName General_Purpose.dbc \</span><br><span class="line">  -gdbName tcdb -sid tcdb \</span><br><span class="line">  -createAsContainerDatabase <span class="literal">true</span> \</span><br><span class="line">  -numberOfPDBs 1 \</span><br><span class="line">  -pdbName tcpdb \</span><br><span class="line">  -pdbAdminPassword <span class="string">&quot;<span class="variable">$DB_PASSWORD</span>&quot;</span> \</span><br><span class="line">  -sysPassword <span class="string">&quot;<span class="variable">$DB_PASSWORD</span>&quot;</span> \</span><br><span class="line">  -systemPassword <span class="string">&quot;<span class="variable">$DB_PASSWORD</span>&quot;</span> \</span><br><span class="line">  -characterSet AL32UTF8 \</span><br><span class="line">  -datafileDestination /data/plm/oracle/oradata \</span><br><span class="line">  -recoveryAreaDestination /data/plm/oracle/fast_recovery_area \</span><br><span class="line">  -emConfiguration NONE \</span><br><span class="line">  -sampleSchema <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>Use separate strong passwords for <code>SYS</code>, <code>SYSTEM</code>, and the PDB administrator in a production environment. For this isolated lab, the requested simple password was used and accepted with complexity warnings.</p>
+<p>Database creation can take several minutes. The main output is written to the terminal, and detailed logs are under <code>$ORACLE_BASE/cfgtoollogs/dbca/tcdb</code>.</p>
+<h2 id="14-Confirm-the-container-and-PDB-state"><a href="#14-Confirm-the-container-and-PDB-state" class="headerlink" title="14. Confirm the container and PDB state"></a>14. Confirm the container and PDB state</h2><p>Connect with operating-system authentication:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlplus / as sysdba</span><br></pre></td></tr></table></figure>
+
+<p>Run the following queries:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> instance_name, status <span class="keyword">from</span> v$instance;</span><br><span class="line"><span class="keyword">select</span> name, open_mode, cdb <span class="keyword">from</span> v$database;</span><br><span class="line"><span class="keyword">select</span> name, open_mode <span class="keyword">from</span> v$pdbs;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">value</span> <span class="keyword">from</span> nls_database_parameters</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">parameter</span> <span class="operator">=</span> <span class="string">&#x27;NLS_CHARACTERSET&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Expected results include:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tcdb       OPEN</span><br><span class="line">TCDB       READ WRITE   YES</span><br><span class="line">TCPDB      READ WRITE</span><br><span class="line">AL32UTF8</span><br></pre></td></tr></table></figure>
+
+<p>If <code>TCPDB</code> is mounted, open it and preserve that state across restarts:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> pluggable database tcpdb <span class="keyword">open</span>;</span><br><span class="line"><span class="keyword">alter</span> pluggable database <span class="keyword">all</span> save state;</span><br></pre></td></tr></table></figure>
+
+<p>Verify a normal password-based connection to the PDB service:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlplus system@//127.0.0.1:1521/tcpdb</span><br></pre></td></tr></table></figure>
+
+<p>After entering the password, run:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> con_name</span><br><span class="line"><span class="keyword">select</span> name, open_mode <span class="keyword">from</span> v$database;</span><br></pre></td></tr></table></figure>
+
+<p><code>CON_NAME</code> must be <code>TCPDB</code>. Applications such as Teamcenter Deployment Center must use the PDB service name <code>tcpdb</code>, not only the CDB service name <code>tcdb</code>.</p>
+<h2 id="15-Enable-automatic-startup-with-systemd"><a href="#15-Enable-automatic-startup-with-systemd" class="headerlink" title="15. Enable automatic startup with systemd"></a>15. Enable automatic startup with systemd</h2><p>Set the database entry in <code>/etc/oratab</code> to <code>Y</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;/^tcdb:/d&#x27;</span> /etc/oratab</span><br><span class="line"><span class="built_in">printf</span> <span class="string">&#x27;tcdb:/data/plm/oracle/product/19.0.0/dbhome_1:Y\n&#x27;</span> \</span><br><span class="line">  &gt;&gt; /etc/oratab</span><br></pre></td></tr></table></figure>
+
+<p>Create the listener service:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /etc/systemd/system/oracle-listener.service &lt;&lt;<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">[Unit]</span><br><span class="line">Description=Oracle Net listener</span><br><span class="line">After=network-online.target</span><br><span class="line">Wants=network-online.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">RemainAfterExit=<span class="built_in">yes</span></span><br><span class="line">User=oracle</span><br><span class="line">Group=oinstall</span><br><span class="line">Environment=HOME=/home/oracle</span><br><span class="line">Environment=ORACLE_HOME=/data/plm/oracle/product/19.0.0/dbhome_1</span><br><span class="line">Environment=LD_LIBRARY_PATH=/data/plm/oracle/product/19.0.0/dbhome_1/lib</span><br><span class="line">Environment=PATH=/data/plm/oracle/product/19.0.0/dbhome_1/bin:/usr/bin:/bin</span><br><span class="line">ExecStart=/data/plm/oracle/product/19.0.0/dbhome_1/bin/lsnrctl start LISTENER</span><br><span class="line">ExecStop=/data/plm/oracle/product/19.0.0/dbhome_1/bin/lsnrctl stop LISTENER</span><br><span class="line">ExecStopPost=-/bin/sleep 2</span><br><span class="line">TimeoutStartSec=120</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>Create the database service:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /etc/systemd/system/oracle-db.service &lt;&lt;<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">[Unit]</span><br><span class="line">Description=Oracle Database instance tcdb</span><br><span class="line">After=network-online.target oracle-listener.service</span><br><span class="line">Wants=network-online.target oracle-listener.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">RemainAfterExit=<span class="built_in">yes</span></span><br><span class="line">User=oracle</span><br><span class="line">Group=oinstall</span><br><span class="line">Environment=HOME=/home/oracle</span><br><span class="line">Environment=ORACLE_BASE=/data/plm/oracle</span><br><span class="line">Environment=ORACLE_HOME=/data/plm/oracle/product/19.0.0/dbhome_1</span><br><span class="line">Environment=ORACLE_SID=tcdb</span><br><span class="line">Environment=LD_LIBRARY_PATH=/data/plm/oracle/product/19.0.0/dbhome_1/lib</span><br><span class="line">Environment=PATH=/data/plm/oracle/product/19.0.0/dbhome_1/bin:/usr/bin:/bin</span><br><span class="line">ExecStart=/data/plm/oracle/product/19.0.0/dbhome_1/bin/dbstart /data/plm/oracle/product/19.0.0/dbhome_1</span><br><span class="line">ExecStop=/data/plm/oracle/product/19.0.0/dbhome_1/bin/dbshut /data/plm/oracle/product/19.0.0/dbhome_1</span><br><span class="line">TimeoutStartSec=600</span><br><span class="line">TimeoutStopSec=300</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>Enable both services:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl <span class="built_in">enable</span> oracle-listener oracle-db</span><br></pre></td></tr></table></figure>
+
+<p>Because both units use <code>Type=oneshot</code> and <code>RemainAfterExit=yes</code>, their expected state is <code>active (exited)</code>. Their Oracle child processes must still be running.</p>
+<h2 id="16-Reboot-and-validate-the-complete-stack"><a href="#16-Reboot-and-validate-the-complete-stack" class="headerlink" title="16. Reboot and validate the complete stack"></a>16. Reboot and validate the complete stack</h2><p>Reboot to verify that the listener, CDB, PDB, and saved PDB state all survive a restart:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl reboot</span><br></pre></td></tr></table></figure>
+
+<p>After the server returns, check the services and port:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl is-enabled oracle-listener oracle-db</span><br><span class="line">systemctl is-active oracle-listener oracle-db</span><br><span class="line">ss -ltnp | grep 1521</span><br><span class="line">lsnrctl status LISTENER</span><br></pre></td></tr></table></figure>
+
+<p>The listener summary should include both services:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Service &quot;tcdb&quot; has 1 instance(s). Instance &quot;tcdb&quot;, status READY</span><br><span class="line">Service &quot;tcpdb&quot; has 1 instance(s). Instance &quot;tcdb&quot;, status READY</span><br></pre></td></tr></table></figure>
+
+<p>Check the database state:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> instance_name, status <span class="keyword">from</span> v$instance;</span><br><span class="line"><span class="keyword">select</span> name, open_mode, cdb <span class="keyword">from</span> v$database;</span><br><span class="line"><span class="keyword">select</span> name, open_mode <span class="keyword">from</span> v$pdbs;</span><br></pre></td></tr></table></figure>
+
+<p>The final state should be:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSTANCE  TCDB OPEN</span><br><span class="line">DATABASE  TCDB READ WRITE YES</span><br><span class="line">PDB       TCPDB READ WRITE</span><br></pre></td></tr></table></figure>
+
+<p>Finally, confirm that the database port is reachable from the Teamcenter application server and that <code>tcpdb</code> is the service name configured in Deployment Center.</p>
+<h2 id="17-Troubleshooting"><a href="#17-Troubleshooting" class="headerlink" title="17. Troubleshooting"></a>17. Troubleshooting</h2><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Checks and resolution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>INS-13013</code> during OUI prereq checks</td>
+<td>Inspect the failed-task section in the install log. On 19.3 and SP7, obsolete checks may remain after the required packages are installed. Review every failure before using <code>-ignorePrereqFailure</code>.</td>
+</tr>
+<tr>
+<td><code>libstdc++33</code> reported as missing</td>
+<td>This legacy compatibility package is not present on current SLES 15 SP7. It is a known false positive for the old 19.3 prereq rules.</td>
+</tr>
+<tr>
+<td><code>cannot find /usr/lib64/libpthread_nonshared.a</code></td>
+<td>Apply the Oracle stub workaround in section 9, or install a current RU that supports the newer glibc package.</td>
+</tr>
+<tr>
+<td><code>INS-32035</code> or <code>INS-32047</code> for Inventory</td>
+<td>Use an empty writable Inventory directory owned by <code>oracle:oinstall</code>. Do not point a retry at a locked or partially initialized Inventory.</td>
+</tr>
+<tr>
+<td><code>TNS-12542: address already in use</code></td>
+<td>Use one TCP listener endpoint per host and port, and check that another listener is not already running.</td>
+</tr>
+<tr>
+<td><code>ORA-12541: no listener</code></td>
+<td>Check <code>systemctl status oracle-listener</code>, <code>lsnrctl status</code>, the hostname in <code>listener.ora</code>, and local firewall rules.</td>
+</tr>
+<tr>
+<td><code>ORA-12514</code> or no <code>tcpdb</code> service</td>
+<td>Start the CDB, open the PDB, wait for dynamic registration, or run <code>alter system register</code> as <code>SYSDBA</code>.</td>
+</tr>
+<tr>
+<td><code>TCPDB</code> becomes <code>MOUNTED</code> after restart</td>
+<td>Run <code>alter pluggable database tcpdb open;</code> and <code>alter pluggable database all save state;</code> while the PDB is open.</td>
+</tr>
+<tr>
+<td><code>TNS-01106: Listener is already running</code></td>
+<td>The listener is already active. This is not an installation failure.</td>
+</tr>
+<tr>
+<td>Data files are on NFS</td>
+<td>Move them to local storage. Oracle does not support NFS for database data files used by this deployment.</td>
+</tr>
+<tr>
+<td>Hostname longer than 31 characters</td>
+<td>Use a shorter hostname and regenerate the Oracle Net configuration.</td>
+</tr>
+</tbody></table>
+<h2 id="18-Production-hardening"><a href="#18-Production-hardening" class="headerlink" title="18. Production hardening"></a>18. Production hardening</h2><p>Before using this database in production:</p>
+<ul>
+<li>Apply a certified 19c RU and confirm the platform remains supported.</li>
+<li>Replace simple lab passwords with strong, unique passwords and rotate them according to policy.</li>
+<li>Restrict TCP port <code>1521</code> to the application servers that require database access.</li>
+<li>Place data files and the Fast Recovery Area on a reliable local storage layout.</li>
+<li>Test backup, restore, listener failover, and system restart procedures.</li>
+<li>Review the default password lifetime profile and the customer security baseline.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SLES/" rel="tag"><i class="fa fa-tag"></i> SLES</a>
+              <a href="/tags/Installation/" rel="tag"><i class="fa fa-tag"></i> Installation</a>
+              <a href="/tags/Oracle/" rel="tag"><i class="fa fa-tag"></i> Oracle</a>
+              <a href="/tags/Database/" rel="tag"><i class="fa fa-tag"></i> Database</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Uncategorized/Install-Windows-Server-2025/" rel="prev" title="Install Windows Server 2025">
+                  <i class="fa fa-angle-left"></i> Install Windows Server 2025
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">James Wang</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">32k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">1:55</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/james-wangx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"james-wangx/james-wangx.github.io","repo_id":"R_kgDOPo1xrA","category":"Comments","category_id":"DIC_kwDOPo1xrM4C_AXZ","mapping":"pathname","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"preferred_color_scheme","lang":"en","crossorigin":"anonymous","input_position":"bottom","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>
