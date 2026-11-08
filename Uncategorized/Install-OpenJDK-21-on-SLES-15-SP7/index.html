@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="Lc6flMQrdAzzO5AVZhpNCTDGPavN3YkJ6g58f7mlbkw">
+  <meta name="msvalidate.01" content="D1C68EA11E61EC2D9C2EA68A01B5DAF3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.css" integrity="sha256-mdaMxrItEW6hMIVJJNPKuX0B7KCSJQVEv3mVY4N2we4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"james-wangx.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.29.1","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Install Temurin OpenJDK 21 on SUSE Linux Enterprise Server 15 SP7 and configure a system-wide Java environment.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Install OpenJDK 21 on SLES 15 SP7">
+<meta property="og:url" content="https://james-wangx.github.io/Uncategorized/Install-OpenJDK-21-on-SLES-15-SP7/index.html">
+<meta property="og:site_name" content="James Wang&#39;s Blog">
+<meta property="og:description" content="Install Temurin OpenJDK 21 on SUSE Linux Enterprise Server 15 SP7 and configure a system-wide Java environment.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-11-08T13:55:50.000Z">
+<meta property="article:modified_time" content="2026-11-08T13:56:32.753Z">
+<meta property="article:author" content="James Wang">
+<meta property="article:tag" content="Installation">
+<meta property="article:tag" content="JDK">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="SLES">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://james-wangx.github.io/Uncategorized/Install-OpenJDK-21-on-SLES-15-SP7/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://james-wangx.github.io/Uncategorized/Install-OpenJDK-21-on-SLES-15-SP7/","path":"Uncategorized/Install-OpenJDK-21-on-SLES-15-SP7/","title":"Install OpenJDK 21 on SLES 15 SP7"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Install OpenJDK 21 on SLES 15 SP7 | James Wang's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.umd.js" integrity="sha256-QnJV4HT5r8i89ovZGRD86iynZqHerEbT2xt69vDM36I=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.1/pangu.umd.js" integrity="sha256-kRsxecBnwG6mULFPe2E6UKnNm8XfDOuDwCOprjLZuX8=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="Search" role="button">
+      <i class="fa fa-search fa-fw fa-lg"></i>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">James Wang's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Learning · Building · Sharing</p>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="Toggle navigation bar" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  
+  <template id="search-popup-template"><div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div></template>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Environment-and-media"><span class="nav-text">1. Environment and media</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Verify-the-archive"><span class="nav-text">2. Verify the archive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Create-the-installation-directory"><span class="nav-text">3. Create the installation directory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Extract-OpenJDK"><span class="nav-text">4. Extract OpenJDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Set-ownership-and-permissions"><span class="nav-text">5. Set ownership and permissions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Configure-the-Java-environment"><span class="nav-text">6. Configure the Java environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Verify-the-installation"><span class="nav-text">7. Verify the installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Upgrade-considerations"><span class="nav-text">8. Upgrade considerations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Troubleshooting"><span class="nav-text">9. Troubleshooting</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">James Wang</p>
+  <div class="site-description" itemprop="description">A personal blog about software development, technology, and life.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/james-wangx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;james-wangx" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:wangjian@xcplm.com" title="E-Mail → mailto:wangjian@xcplm.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/james_wangx" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;james_wangx" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/@james-wangx" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;@james-wangx" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://james-wangx.github.io/Uncategorized/Install-OpenJDK-21-on-SLES-15-SP7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="James Wang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="James Wang's Blog">
+      <meta itemprop="description" content="A personal blog about software development, technology, and life.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Install OpenJDK 21 on SLES 15 SP7 | James Wang's Blog">
+      <meta itemprop="description" content="Install Temurin OpenJDK 21 on SUSE Linux Enterprise Server 15 SP7 and configure a system-wide Java environment.">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Install OpenJDK 21 on SLES 15 SP7
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-11-08 21:55:50 / Modified: 21:56:32" itemprop="dateCreated datePublished" datetime="2026-11-08T21:55:50+08:00">2026-11-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Uncategorized/" itemprop="url" rel="index"><span itemprop="name">Uncategorized</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-lines"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>896</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>3 mins.</span>
+    </span>
+</div>
+
+            <div class="post-description">Install Temurin OpenJDK 21 on SUSE Linux Enterprise Server 15 SP7 and configure a system-wide Java environment.</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>OpenJDK 21 is the current long-term support release for many Java applications. This guide installs Temurin OpenJDK 21 from a Linux x64 archive, places it under <code>/data/plm/jdk/21</code>, verifies the media checksum, and configures a system-wide Java environment for SLES 15 SP7.</p>
+<p>This approach is suitable for Teamcenter and other applications that require a fixed JDK path. It does not depend on the SLES package manager and does not change the system Java alternatives.</p>
+<h2 id="1-Environment-and-media"><a href="#1-Environment-and-media" class="headerlink" title="1. Environment and media"></a>1. Environment and media</h2><p>The example uses the following components:</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Operating system</td>
+<td>SLES 15 SP7 x86-64</td>
+</tr>
+<tr>
+<td>Distribution</td>
+<td>Eclipse Temurin</td>
+</tr>
+<tr>
+<td>Java version</td>
+<td>OpenJDK 21.0.3+9</td>
+</tr>
+<tr>
+<td>Install directory</td>
+<td><code>/data/plm/jdk/21</code></td>
+</tr>
+<tr>
+<td>Archive</td>
+<td><code>OpenJDK21U-jdk_x64_linux_hotspot_21.0.3_9.tar.gz</code></td>
+</tr>
+<tr>
+<td>Archive size</td>
+<td>Approximately 198 MB</td>
+</tr>
+<tr>
+<td>Installed size</td>
+<td>Approximately 346 MB</td>
+</tr>
+</tbody></table>
+<p>OpenJDK 21.0.3 has received later security and maintenance updates. Use the latest supported Temurin 21 release for a production deployment and verify the published checksum before installation.</p>
+<h2 id="2-Verify-the-archive"><a href="#2-Verify-the-archive" class="headerlink" title="2. Verify the archive"></a>2. Verify the archive</h2><p>Confirm that the file is a Linux x64 archive:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file OpenJDK21U-jdk_x64_linux_hotspot_21.0.3_9.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>Inspect the archive root directory before extraction:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -tzf OpenJDK21U-jdk_x64_linux_hotspot_21.0.3_9.tar.gz | <span class="built_in">head</span></span><br></pre></td></tr></table></figure>
+
+<p>The expected root directory is:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdk-21.0.3+9/</span><br></pre></td></tr></table></figure>
+
+<p>Calculate the SHA-256 checksum:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sha256sum</span> OpenJDK21U-jdk_x64_linux_hotspot_21.0.3_9.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>The archive used in this installation has the following checksum:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fffa52c22d797b715a962e6c8d11ec7d79b90dd819b5bc51d62137ea4b22a340</span><br></pre></td></tr></table></figure>
+
+<p>Compare the result with the checksum published by the download provider. Do not install an archive that fails verification.</p>
+<h2 id="3-Create-the-installation-directory"><a href="#3-Create-the-installation-directory" class="headerlink" title="3. Create the installation directory"></a>3. Create the installation directory</h2><p>Create the parent directory with root ownership and standard read&#x2F;execute access:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install -d -m 755 /data/plm/jdk</span><br><span class="line"><span class="built_in">ls</span> -ld /data/plm/jdk</span><br></pre></td></tr></table></figure>
+
+<p>The expected permission is:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drwxr-xr-x root root /data/plm/jdk</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Extract-OpenJDK"><a href="#4-Extract-OpenJDK" class="headerlink" title="4. Extract OpenJDK"></a>4. Extract OpenJDK</h2><p>Place the archive in <code>/tmp</code>, then extract it into <code>/data/plm/jdk</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -xzf /tmp/OpenJDK21U-jdk_x64_linux_hotspot_21.0.3_9.tar.gz \</span><br><span class="line">  -C /data/plm/jdk</span><br></pre></td></tr></table></figure>
+
+<p>The archive creates:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/data/plm/jdk/jdk-21.0.3+9</span><br></pre></td></tr></table></figure>
+
+<p>Rename it to the stable application path:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> /data/plm/jdk/jdk-21.0.3+9 /data/plm/jdk/21</span><br></pre></td></tr></table></figure>
+
+<p>Before moving the directory, check that <code>/data/plm/jdk/21</code> does not already exist. In a scripted installation, add protection against overwriting an existing JDK:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">test</span> ! -e /data/plm/jdk/21</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-Set-ownership-and-permissions"><a href="#5-Set-ownership-and-permissions" class="headerlink" title="5. Set ownership and permissions"></a>5. Set ownership and permissions</h2><p>Use <code>root:root</code> ownership so that application users can use the JDK without being able to modify it:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> -R root:root /data/plm/jdk/21</span><br><span class="line"><span class="built_in">chmod</span> -R u=rwX,go=rX /data/plm/jdk/21</span><br></pre></td></tr></table></figure>
+
+<p>Verify the key executables:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -l /data/plm/jdk/21/bin/java</span><br><span class="line"><span class="built_in">ls</span> -l /data/plm/jdk/21/bin/javac</span><br></pre></td></tr></table></figure>
+
+<p>Both files should be executable by the owner, group, and other users.</p>
+<h2 id="6-Configure-the-Java-environment"><a href="#6-Configure-the-Java-environment" class="headerlink" title="6. Configure the Java environment"></a>6. Configure the Java environment</h2><p>Create <code>/etc/profile.d/jdk.sh</code> so that new login shells receive the Java environment:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; /etc/profile.d/jdk.sh &lt;&lt;<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/data/plm/jdk/21</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span></span><br><span class="line"><span class="built_in">export</span> JRE64_HOME=<span class="variable">$JAVA_HOME</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="built_in">chown</span> root:root /etc/profile.d/jdk.sh</span><br><span class="line"><span class="built_in">chmod</span> 644 /etc/profile.d/jdk.sh</span><br></pre></td></tr></table></figure>
+
+<p>The resulting file is:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/data/plm/jdk/21</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span></span><br><span class="line"><span class="built_in">export</span> JRE64_HOME=<span class="variable">$JAVA_HOME</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+
+<p>An existing session does not automatically receive the new variables. Reconnect or load the file explicitly:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile.d/jdk.sh</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-Verify-the-installation"><a href="#7-Verify-the-installation" class="headerlink" title="7. Verify the installation"></a>7. Verify the installation</h2><p>Check the configured paths:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span> <span class="string">&#x27;JAVA_HOME=%s\n&#x27;</span> <span class="string">&quot;<span class="variable">$JAVA_HOME</span>&quot;</span></span><br><span class="line"><span class="built_in">printf</span> <span class="string">&#x27;JRE_HOME=%s\n&#x27;</span> <span class="string">&quot;<span class="variable">$JRE_HOME</span>&quot;</span></span><br><span class="line"><span class="built_in">printf</span> <span class="string">&#x27;JRE64_HOME=%s\n&#x27;</span> <span class="string">&quot;<span class="variable">$JRE64_HOME</span>&quot;</span></span><br><span class="line"><span class="built_in">command</span> -v java</span><br><span class="line"><span class="built_in">command</span> -v javac</span><br></pre></td></tr></table></figure>
+
+<p>The expected paths are:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/data/plm/jdk/21</span><br><span class="line">JRE_HOME=/data/plm/jdk/21</span><br><span class="line">JRE64_HOME=/data/plm/jdk/21</span><br><span class="line">/data/plm/jdk/21/bin/java</span><br><span class="line">/data/plm/jdk/21/bin/javac</span><br></pre></td></tr></table></figure>
+
+<p>Verify both the runtime and compiler:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line">javac -version</span><br></pre></td></tr></table></figure>
+
+<p>Expected output:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">openjdk version &quot;21.0.3&quot; 2024-04-16 LTS</span><br><span class="line">OpenJDK Runtime Environment Temurin-21.0.3+9 (build 21.0.3+9-LTS)</span><br><span class="line">OpenJDK 64-Bit Server VM Temurin-21.0.3+9 (build 21.0.3+9-LTS, mixed mode, sharing)</span><br><span class="line">javac 21.0.3</span><br></pre></td></tr></table></figure>
+
+<p>Check the same environment through a new login shell:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -lc <span class="string">&#x27;printenv JAVA_HOME; printenv JRE_HOME; printenv JRE64_HOME; java -version&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>This confirms that <code>/etc/profile.d/jdk.sh</code> is loaded for normal login sessions.</p>
+<h2 id="8-Upgrade-considerations"><a href="#8-Upgrade-considerations" class="headerlink" title="8. Upgrade considerations"></a>8. Upgrade considerations</h2><p>The <code>/data/plm/jdk/21</code> directory is a stable path used by application configuration. When upgrading OpenJDK:</p>
+<ol>
+<li>Download and verify the new Java 21 archive.</li>
+<li>Extract it to a temporary version-specific directory.</li>
+<li>Stop application services that use Java.</li>
+<li>Preserve the previous JDK until validation is complete.</li>
+<li>Replace <code>/data/plm/jdk/21</code>, or repoint application-specific environment variables to the new version.</li>
+</ol>
+<p>Do not replace the active JDK while Java services are starting or while an installer is using it.</p>
+<h2 id="9-Troubleshooting"><a href="#9-Troubleshooting" class="headerlink" title="9. Troubleshooting"></a>9. Troubleshooting</h2><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>java: command not found</code> in a new session</td>
+<td>Verify that <code>/etc/profile.d/jdk.sh</code> exists and the current shell is a login shell or has sourced the file.</td>
+</tr>
+<tr>
+<td><code>JAVA_HOME</code> is empty</td>
+<td>Reconnect, source <code>/etc/profile.d/jdk.sh</code>, and check <code>/etc/profile</code> loads <code>/etc/profile.d/*.sh</code>.</td>
+</tr>
+<tr>
+<td><code>Permission denied</code> when running Java</td>
+<td>Verify that the JDK directory and binary files are readable and executable by the application user.</td>
+</tr>
+<tr>
+<td><code>sha256sum</code> does not match</td>
+<td>Download the archive again from a trusted source and do not install the failed copy.</td>
+</tr>
+<tr>
+<td>An application still uses an older Java version</td>
+<td>Check its service file or startup script for a hard-coded <code>JAVA_HOME</code>, <code>JRE_HOME</code>, or absolute Java path.</td>
+</tr>
+<tr>
+<td>Installing a new patch overwrote the active JDK unexpectedly</td>
+<td>Use a version-specific directory and switch the stable path only after validation.</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SLES/" rel="tag"><i class="fa fa-tag"></i> SLES</a>
+              <a href="/tags/Installation/" rel="tag"><i class="fa fa-tag"></i> Installation</a>
+              <a href="/tags/JDK/" rel="tag"><i class="fa fa-tag"></i> JDK</a>
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/PLM/Teamcenter/Install-Oracle-Database-19c-on-SLES-15-SP7/" rel="prev" title="Install Oracle Database 19c on SLES 15 SP7">
+                  <i class="fa fa-angle-left"></i> Install Oracle Database 19c on SLES 15 SP7
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">James Wang</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">33k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">1:59</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/james-wangx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"james-wangx/james-wangx.github.io","repo_id":"R_kgDOPo1xrA","category":"Comments","category_id":"DIC_kwDOPo1xrM4C_AXZ","mapping":"pathname","strict":0,"reactions_enabled":1,"emit_metadata":1,"theme":"preferred_color_scheme","lang":"en","crossorigin":"anonymous","input_position":"bottom","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>
