@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://james-wangx.github.io/Uncategorized/Install-OpenJDK-21-on-SLES-15-SP7/</loc>
+    <loc>https://james-wangx.github.io/Uncategorized/Install-Oracle-Database-19c-on-SLES-15-SP7/</loc>
     
     <lastmod>2026-11-08</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/PLM/Teamcenter/Install-Oracle-Database-19c-on-SLES-15-SP7/</loc>
+    <loc>https://james-wangx.github.io/Uncategorized/Install-OpenJDK-21-on-SLES-15-SP7/</loc>
     
     <lastmod>2026-11-08</lastmod>
     
@@ -254,6 +254,13 @@
 
   
   <url>
+    <loc>https://james-wangx.github.io/tags/VMware/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://james-wangx.github.io/tags/%E5%AE%89%E8%A3%85/</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -268,7 +275,7 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/tags/Install/</loc>
+    <loc>https://james-wangx.github.io/tags/Oracle/</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -276,6 +283,13 @@
   
   <url>
     <loc>https://james-wangx.github.io/tags/SLES/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/Database/</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -303,7 +317,28 @@
   </url>
   
   <url>
+    <loc>https://james-wangx.github.io/tags/Install/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://james-wangx.github.io/tags/Windows-Server/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/BMIDE/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/%E5%8D%87%E7%BA%A7/</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -317,7 +352,14 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/tags/VMware/</loc>
+    <loc>https://james-wangx.github.io/tags/Updrade/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/Xpedition/</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -345,28 +387,7 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/tags/Updrade/</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/Oracle/</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/Database/</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/%E9%9B%86%E6%88%90/</loc>
+    <loc>https://james-wangx.github.io/tags/Dispatcher/</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -380,42 +401,7 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/tags/Dispatcher/</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/BMIDE/</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/%E5%8D%87%E7%BA%A7/</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/Xpedition/</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/Subtype/</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://james-wangx.github.io/tags/Windchill/</loc>
+    <loc>https://james-wangx.github.io/tags/%E9%9B%86%E6%88%90/</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -429,6 +415,20 @@
   </url>
   
   <url>
+    <loc>https://james-wangx.github.io/tags/Attribute/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/tags/Windchill/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://james-wangx.github.io/tags/Stratup/</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -436,7 +436,7 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/tags/Attribute/</loc>
+    <loc>https://james-wangx.github.io/tags/Subtype/</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -466,13 +466,6 @@
   </url>
   
   <url>
-    <loc>https://james-wangx.github.io/categories/PLM/Teamcenter/</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://james-wangx.github.io/categories/PLM/BMIDE/</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -481,6 +474,13 @@
   
   <url>
     <loc>https://james-wangx.github.io/categories/PLM/Xpedition/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://james-wangx.github.io/categories/PLM/Teamcenter/</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
